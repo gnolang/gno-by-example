@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { ChakraProvider, extendTheme } from '@chakra-ui/react';
 import AppRouter from './router/AppRouter';
 

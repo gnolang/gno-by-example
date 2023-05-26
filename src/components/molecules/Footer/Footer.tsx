@@ -28,12 +28,11 @@ const Footer: FC<IFooterProps> = () => {
   ];
 
   return (
-    <Container maxW={'80vw'}>
+    <Container maxW={'80vw'} my={10}>
       <Box
         display={'flex'}
         justifyContent={'space-between'}
         alignItems={'center'}
-        mt={10}
       >
         <Box display={'flex'} flexDirection={'column'}>
           <Box mb={6}>

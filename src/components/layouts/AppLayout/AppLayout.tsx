@@ -11,13 +11,13 @@ const AppLayout: FC<IAppLayoutProps> = (props) => {
       display={'flex'}
       flexDirection={'column'}
       width={'100%'}
-      height={'100%'}
+      minHeight={'100vh'}
     >
       <Header />
       <Container maxW={'80vw'} my={20}>
         <Outlet />
       </Container>
-      <Divider borderColor={'#E1E1E1'} />
+      <Divider borderColor={'#E1E1E1'} mt={'auto'} />
       <Footer />
     </Box>
   );
