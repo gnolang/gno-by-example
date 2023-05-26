@@ -17,7 +17,7 @@ const AppLayout: FC<IAppLayoutProps> = (props) => {
       <Container maxW={'80vw'} my={20}>
         <Outlet />
       </Container>
-      <Divider borderColor={'#A8A8A8'} />
+      <Divider borderColor={'#E1E1E1'} />
       <Footer />
     </Box>
   );
