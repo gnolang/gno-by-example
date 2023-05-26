@@ -35,11 +35,12 @@ const ContentTable: FC<IContentTableProps> = () => {
 
   return (
     <Box
-      padding={'20px 30px'}
-      width={'15%'}
+      padding={'20px 100px 20px 30px'}
       backgroundColor={'white'}
       borderRadius={'10px'}
-      boxShadow={'0px 0px 10px 0px rgba(128,142,155,0.15)'}
+      boxShadow={'-4px 4px 32px -8px rgba(0, 0, 0, 0.07)'}
+      height={'auto'}
+      alignSelf={'flex-start'}
     >
       <Stack direction={'column'} spacing={'15px'}>
         {sections.map((section, index) => {
