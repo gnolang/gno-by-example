@@ -2,6 +2,7 @@ import IHeaderProps from './header.types';
 import React, { FC } from 'react';
 import { Box, Container, Image, Switch } from '@chakra-ui/react';
 import gnolandBlack from '../../../assets/img/gnolandBlack.png';
+import { Link } from 'react-router-dom';
 
 const Header: FC<IHeaderProps> = () => {
   return (
@@ -13,7 +14,9 @@ const Header: FC<IHeaderProps> = () => {
         mt={10}
       >
         <Box>
-          <Image src={gnolandBlack} height={'auto'} width={'150px'} />
+          <Link to={'/'}>
+            <Image src={gnolandBlack} height={'auto'} width={'150px'} />
+          </Link>
         </Box>
         <Box>
           <Switch size={'lg'} />

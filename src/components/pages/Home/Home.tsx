@@ -27,15 +27,15 @@ const Home: FC<IHomeProps> = () => {
       items: [
         {
           title: 'Item 1',
-          link: 'https://google.com'
+          link: '/tutorials/1'
         },
         {
           title: 'Item 2',
-          link: 'https://google.com'
+          link: '/tutorials/2'
         },
         {
           title: 'Item 3',
-          link: 'https://google.com'
+          link: '/tutorials/3'
         }
       ]
     },
@@ -44,15 +44,15 @@ const Home: FC<IHomeProps> = () => {
       items: [
         {
           title: 'Item 1',
-          link: 'https://google.com'
+          link: '/tutorials/4'
         },
         {
           title: 'Item 2',
-          link: 'https://google.com'
+          link: '/tutorials/5'
         },
         {
           title: 'Item 3',
-          link: 'https://google.com'
+          link: '/tutorials/6'
         }
       ]
     }
