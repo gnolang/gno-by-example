@@ -1,0 +1,16 @@
+.activeMode {
+    color: #626262;
+    background-color: white !important;
+}
+
+.activeMode:hover {
+    background-color: white;
+}
+
+.activeMode:focus {
+    background-color: white;
+}
+
+.inactiveMode {
+    color: #A8A8A8
+}

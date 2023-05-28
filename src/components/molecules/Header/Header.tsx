@@ -1,8 +1,9 @@
 import IHeaderProps from './header.types';
 import React, { FC } from 'react';
-import { Box, Container, Image, Switch } from '@chakra-ui/react';
+import { Box, Container, Image } from '@chakra-ui/react';
 import gnolandBlack from '../../../assets/img/gnolandBlack.png';
 import { Link } from 'react-router-dom';
+import ThemeToggle from '../../atoms/ThemeToggle/ThemeToggle';
 
 const Header: FC<IHeaderProps> = () => {
   return (
@@ -19,7 +20,7 @@ const Header: FC<IHeaderProps> = () => {
           </Link>
         </Box>
         <Box>
-          <Switch size={'lg'} />
+          <ThemeToggle />
         </Box>
       </Box>
     </Container>

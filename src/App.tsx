@@ -8,7 +8,31 @@ const App = () => {
     useSystemColorMode: true
   };
 
-  const theme = extendTheme({ config });
+  const theme = extendTheme({
+    components: {
+      Button: {
+        variants: {
+          outline: {
+            _hover: {
+              bg: '#F1F1F1'
+            },
+            _active: {
+              bg: '#E1E1E1'
+            }
+          },
+          ghost: {
+            _hover: {
+              bg: '#F1F1F1'
+            },
+            _active: {
+              bg: '#E1E1E1'
+            }
+          }
+        }
+      }
+    },
+    config
+  });
 
   return (
     <ChakraProvider theme={theme}>
