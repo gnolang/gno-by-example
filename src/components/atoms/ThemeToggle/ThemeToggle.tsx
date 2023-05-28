@@ -8,45 +8,64 @@ import styles from './themeToggle.module.css';
 const ThemeToggle: FC<IThemeToggleProps> = () => {
   const { colorMode, setColorMode } = useColorMode();
 
+  const isLight: boolean = colorMode === 'light';
+
   useEffect(() => {}, [colorMode]);
+
+  const renderIcon = (light: boolean) => {
+    const commonProps = {
+      variant: 'ghost',
+      borderRadius: '10px',
+      size: 'sm'
+    };
+
+    if (light) {
+      return (
+        <IconButton
+          aria-label={'Light'}
+          icon={<BsSunFill />}
+          ml={1}
+          onClick={() => {
+            setColorMode('light');
+          }}
+          className={clsx({
+            [styles.activeSun]: isLight,
+            [styles.inactiveSun]: !isLight
+          })}
+          {...commonProps}
+        />
+      );
+    }
+
+    return (
+      <IconButton
+        aria-label={'Dark'}
+        icon={<BsMoonFill />}
+        onClick={() => {
+          setColorMode('dark');
+        }}
+        className={clsx({
+          [styles.activeMoon]: !isLight,
+          [styles.inactiveMoon]: isLight
+        })}
+        {...commonProps}
+      />
+    );
+  };
 
   return (
     <Box
       display={'flex'}
       alignItems={'center'}
-      backgroundColor={'#E1E1E1'}
+      backgroundColor={clsx({
+        ['#E1E1E1']: isLight,
+        ['#141414']: !isLight
+      })}
       padding={1}
-      borderRadius={'20px'}
+      borderRadius={'15px'}
     >
-      <IconButton
-        aria-label={'Dark'}
-        icon={<BsMoonFill />}
-        variant={'ghost'}
-        borderRadius={'40%'}
-        size={'sm'}
-        onClick={() => {
-          setColorMode('dark');
-        }}
-        className={clsx({
-          [styles.inactiveMode]: colorMode == 'light',
-          [styles.activeMode]: colorMode == 'dark'
-        })}
-      />
-      <IconButton
-        aria-label={'Light'}
-        icon={<BsSunFill />}
-        variant={'ghost'}
-        ml={2}
-        borderRadius={'40%'}
-        size={'sm'}
-        onClick={() => {
-          setColorMode('light');
-        }}
-        className={clsx({
-          [styles.activeMode]: colorMode == 'light',
-          [styles.inactiveMode]: colorMode == 'dark'
-        })}
-      />
+      {renderIcon(false)}
+      {renderIcon(true)}
     </Box>
   );
 };

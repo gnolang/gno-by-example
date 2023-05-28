@@ -1,16 +1,37 @@
-.activeMode {
-    color: #626262;
+.activeSun {
+    color: #626262 !important;
     background-color: white !important;
 }
 
-.activeMode:hover {
-    background-color: white;
+.activeSun:hover,
+.activeSun:focus {
+    background-color: #F1F1F1 !important;
 }
 
-.activeMode:focus {
-    background-color: white;
+.activeMoon {
+    color: white;
+    background-color: #282828 !important;
 }
 
-.inactiveMode {
-    color: #A8A8A8
+.activeMoon:hover,
+.activeMoon:focus {
+    background-color: #282828 !important;
+}
+
+.inactiveSun {
+    color: #A8A8A8 !important;
+}
+
+.inactiveSun:hover,
+.inactiveSun:focus {
+    background-color: #282828 !important;
+}
+
+.inactiveMoon {
+    color: #A8A8A8 !important
+}
+
+.inactiveMoon:hover,
+.inactiveMoon:focus {
+    background-color: #F1F1F1 !important;
 }
