@@ -6,13 +6,15 @@ import {
   InputGroup,
   InputLeftElement,
   Stack,
-  Text
+  Text,
+  useColorMode
 } from '@chakra-ui/react';
 import ContentTable from '../../atoms/ContentTable/ContentTable';
 import Title from '../../atoms/Title/Title';
 import { BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import { ESectionTitle } from '../../atoms/ContentTable/contentTable.types';
+import clsx from 'clsx';
 
 const Home: FC<IHomeProps> = () => {
   const articles: {
@@ -58,11 +60,14 @@ const Home: FC<IHomeProps> = () => {
     }
   ];
 
+  const { colorMode } = useColorMode();
+  const isLight = colorMode === 'light';
+
   return (
     <Box display={'flex'}>
       <ContentTable />
       <Box ml={20} display={'flex'} flexDirection={'column'}>
-        <Title text={'Gno.land by Example'} size={'3xl'} />
+        <Title text={'Gno.land by Example'} size={'4xl'} />
         <Box width={'400px'} mt={6}>
           <InputGroup>
             <InputLeftElement pointerEvents="none">
@@ -74,10 +79,16 @@ const Home: FC<IHomeProps> = () => {
               variant="outline"
               focusBorderColor={'#A8A8A8'}
               _placeholder={{
-                color: '#A8A8A8'
+                color: clsx({
+                  ['#A8A8A8']: isLight,
+                  ['white']: !isLight
+                })
               }}
               css={{
-                background: '#F1F1F1'
+                background: clsx({
+                  ['#F1F1F1']: isLight,
+                  ['#1C1C1C']: !isLight
+                })
               }}
             />
           </InputGroup>

@@ -1,8 +1,8 @@
 import IFooterProps from './footer.types';
 import React, { FC } from 'react';
-import { Box, Container, Image, Link, Text } from '@chakra-ui/react';
-import gnolandBlack from '../../../assets/img/gnolandBlack.png';
+import { Box, Container, Link, Text } from '@chakra-ui/react';
 import { BsDiscord, BsGithub, BsTelegram, BsTwitter } from 'react-icons/bs';
+import Logo from '../../atoms/Logo/Logo';
 
 const Footer: FC<IFooterProps> = () => {
   const iconColor: string = '#626262';
@@ -36,7 +36,7 @@ const Footer: FC<IFooterProps> = () => {
       >
         <Box display={'flex'} flexDirection={'column'}>
           <Box mb={6}>
-            <Image src={gnolandBlack} height={'auto'} width={'150px'} />
+            <Logo />
           </Box>
           <Text fontSize={'sm'}>
             Gno by Example is a community project.

@@ -1,9 +1,8 @@
 import IHeaderProps from './header.types';
 import React, { FC } from 'react';
-import { Box, Container, Image } from '@chakra-ui/react';
-import gnolandBlack from '../../../assets/img/gnolandBlack.png';
-import { Link } from 'react-router-dom';
+import { Box, Container } from '@chakra-ui/react';
 import ThemeToggle from '../../atoms/ThemeToggle/ThemeToggle';
+import Logo from '../../atoms/Logo/Logo';
 
 const Header: FC<IHeaderProps> = () => {
   return (
@@ -14,14 +13,8 @@ const Header: FC<IHeaderProps> = () => {
         alignItems={'center'}
         mt={10}
       >
-        <Box>
-          <Link to={'/'}>
-            <Image src={gnolandBlack} height={'auto'} width={'150px'} />
-          </Link>
-        </Box>
-        <Box>
-          <ThemeToggle />
-        </Box>
+        <Logo />
+        <ThemeToggle />
       </Box>
     </Container>
   );

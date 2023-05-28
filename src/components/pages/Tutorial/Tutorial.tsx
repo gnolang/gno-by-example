@@ -7,6 +7,7 @@ import {
   IconButton,
   Text,
   Tooltip,
+  useColorMode,
   useToast
 } from '@chakra-ui/react';
 import Title from '../../atoms/Title/Title';
@@ -17,6 +18,12 @@ import { Link } from 'react-router-dom';
 const Tutorial: FC<ITutorialProps> = () => {
   const toast = useToast();
   const id = 'copy-toast';
+
+  const { colorMode } = useColorMode();
+
+  const isLight = colorMode === 'light';
+  const codeWrapper = isLight ? '#F1F1F1' : '#3A3A3A';
+  const codeColor = isLight ? '#282828' : '#A8A8A8';
 
   return (
     <Box display={'flex'} flexDirection={'column'}>
@@ -33,7 +40,7 @@ const Tutorial: FC<ITutorialProps> = () => {
         <Title text={'Item 1'} size={'3xl'} />
       </Box>
       <Box display={'flex'} flexDirection={'column'}>
-        <Text>
+        <Text align={'justify'}>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque
           nisi mauris, congue vitae congue a, consequat nec sapien. Vestibulum
           imperdiet nec elit et lobortis. Suspendisse potenti. Nunc non lectus
@@ -49,7 +56,8 @@ const Tutorial: FC<ITutorialProps> = () => {
           display={'flex'}
           width={'100%'}
           padding={'30px'}
-          backgroundColor={'#F1F1F1'}
+          backgroundColor={codeWrapper}
+          color={codeColor}
           borderRadius={'10px'}
           my={6}
           flexDirection={'column'}
@@ -77,7 +85,7 @@ const Tutorial: FC<ITutorialProps> = () => {
               </Button>
             </Tooltip>
           </Box>
-          <Text>Hello!</Text>
+          <Text color={codeColor}>Hello!</Text>
         </Box>
         <Divider />
         <Box

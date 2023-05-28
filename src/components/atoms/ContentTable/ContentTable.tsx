@@ -1,5 +1,5 @@
 import React, { FC, Fragment, useState } from 'react';
-import { Box, Stack, Text } from '@chakra-ui/react';
+import { Box, Stack, Text, useColorMode } from '@chakra-ui/react';
 import { ESectionTitle, IContentTableProps } from './contentTable.types';
 import { FiChevronRight } from 'react-icons/fi';
 
@@ -14,12 +14,16 @@ const ContentTable: FC<IContentTableProps> = () => {
     ESectionTitle.SECTION_3
   ];
 
+  const { colorMode } = useColorMode();
+
+  const activeColor = colorMode === 'dark' ? 'white' : '#1C1C1C';
+
   const renderMenuItem = (section: ESectionTitle) => {
     if (section == activeSection) {
       return (
         <Fragment>
-          <FiChevronRight />
-          <Text ml={2} fontWeight={600}>
+          <FiChevronRight color={activeColor} />
+          <Text ml={2} fontWeight={600} color={activeColor}>
             {section}
           </Text>
         </Fragment>
@@ -33,10 +37,12 @@ const ContentTable: FC<IContentTableProps> = () => {
     );
   };
 
+  const wrapperColor = colorMode === 'dark' ? '#1C1C1C' : 'white';
+
   return (
     <Box
       padding={'20px 100px 20px 30px'}
-      backgroundColor={'white'}
+      backgroundColor={wrapperColor}
       borderRadius={'10px'}
       boxShadow={'-4px 4px 32px -8px rgba(0, 0, 0, 0.07)'}
       height={'auto'}
