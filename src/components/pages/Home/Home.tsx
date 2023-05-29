@@ -1,5 +1,5 @@
 import { IHomeProps } from './home.types';
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import {
   Box,
   Input,
@@ -17,13 +17,15 @@ import { ESectionTitle } from '../../atoms/ContentTable/contentTable.types';
 import clsx from 'clsx';
 
 const Home: FC<IHomeProps> = () => {
-  const articles: {
+  interface TutorialSection {
     section: ESectionTitle;
     items: {
       title: string;
       link: string;
     }[];
-  }[] = [
+  }
+
+  const tutorialSections: TutorialSection[] = [
     {
       section: ESectionTitle.SECTION_1,
       items: [
@@ -63,6 +65,37 @@ const Home: FC<IHomeProps> = () => {
   const { colorMode } = useColorMode();
   const isLight = colorMode === 'light';
 
+  const [displayedSections, setDisplayedSections] =
+    useState<TutorialSection[]>(tutorialSections);
+
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
+  const handleInputChange = (event: any) => {
+    setSearchQuery(event.target.value);
+  };
+
+  useEffect(() => {
+    if (!searchQuery) {
+      setDisplayedSections(tutorialSections);
+    }
+
+    const filtered: TutorialSection[] = [];
+    tutorialSections.map((value) => {
+      const items = value.items.filter((item) => {
+        return item.title.includes(searchQuery);
+      });
+
+      if (items.length > 0) {
+        filtered.push({
+          section: value.section,
+          items
+        });
+      }
+    });
+
+    setDisplayedSections(filtered);
+  }, [searchQuery]);
+
   return (
     <Box display={'flex'}>
       <ContentTable />
@@ -90,11 +123,13 @@ const Home: FC<IHomeProps> = () => {
                   ['#1C1C1C']: !isLight
                 })
               }}
+              onChange={handleInputChange}
             />
           </InputGroup>
         </Box>
         <Stack mt={6} direction={'column'} spacing={'20px'}>
-          {articles.map((article, index) => {
+          {displayedSections.length == 0 && <Text>No search results</Text>}
+          {displayedSections.map((article, index) => {
             return (
               <Box
                 key={`article-${index}`}
