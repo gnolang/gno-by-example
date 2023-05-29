@@ -1,58 +1,77 @@
-import React, { FC, Fragment, useState } from 'react';
+import React, { FC, Fragment, useEffect, useState } from 'react';
 import { Box, Stack, Text, useColorMode } from '@chakra-ui/react';
-import { ESectionTitle, IContentTableProps } from './contentTable.types';
+import { IContentTableProps, ISectionBundle } from './contentTable.types';
 import { FiChevronRight } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import styles from './contentTable.module.css';
 
-const ContentTable: FC<IContentTableProps> = () => {
-  const [activeSection, setActiveSection] = useState<ESectionTitle>(
-    ESectionTitle.SECTION_1
-  );
+const ContentTable: FC<IContentTableProps> = (props) => {
+  const { sections } = props;
 
-  const sections = [
-    ESectionTitle.SECTION_1,
-    ESectionTitle.SECTION_2,
-    ESectionTitle.SECTION_3
-  ];
+  const [activeSection, setActiveSection] = useState<string>(sections[0].title);
 
   const { colorMode } = useColorMode();
 
   const activeColor = colorMode === 'dark' ? 'white' : '#1C1C1C';
 
-  const handleSectionChange = (section: ESectionTitle) => {
+  const handleSectionChange = (section: string) => {
     setActiveSection(section);
   };
 
-  const renderMenuItem = (section: ESectionTitle) => {
-    if (section == activeSection) {
+  const { pathname, hash, key } = useLocation();
+
+  useEffect(() => {
+    if (hash === '') {
+      // Scroll to top
+      window.scrollTo(0, 0);
+
+      return;
+    }
+
+    const timeoutID = setTimeout(() => {
+      // Scroll to item
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView();
+      }
+    }, 0);
+
+    return () => {
+      clearTimeout(timeoutID);
+    };
+  }, [pathname, hash, key]); // do this on route change
+
+  const renderMenuItem = (section: ISectionBundle) => {
+    if (section.title == activeSection) {
       return (
         <Fragment>
-          <Link
-            to={'/#tutorials'}
+          <a
+            href={`/#${section.id}`}
             onClick={() => {
-              handleSectionChange(section);
+              handleSectionChange(section.title);
             }}
           >
             <Box display={'flex'} alignItems={'center'}>
               <FiChevronRight color={activeColor} />
               <Text ml={2} fontWeight={600} color={activeColor}>
-                {section}
+                {section.title}
               </Text>
             </Box>
-          </Link>
+          </a>
         </Fragment>
       );
     }
 
     return (
       <Link
-        to={'/#tutorials'}
+        to={`/#${section.id}`}
         onClick={() => {
-          handleSectionChange(section);
+          handleSectionChange(section.title);
         }}
       >
         <Text color={'#A8A8A8'} fontWeight={600}>
-          {section}
+          {section.title}
         </Text>
       </Link>
     );
@@ -68,6 +87,7 @@ const ContentTable: FC<IContentTableProps> = () => {
       boxShadow={'-4px 4px 32px -8px rgba(0, 0, 0, 0.07)'}
       height={'auto'}
       alignSelf={'flex-start'}
+      className={styles.contentTable}
     >
       <Stack direction={'column'} spacing={'15px'}>
         {sections.map((section, index) => {
