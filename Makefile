@@ -7,7 +7,7 @@ clone:
 bin:
 	cd build/gno/gnovm && make build
 
-test: EXAMPLES_DIR
+test: $(EXAMPLES_DIR)
 	@echo "++++ Executing tests for $^"
 	./build/gno/gnovm/build/gno test --verbose --root-dir ./build/gno ./$^
 
