@@ -2,6 +2,7 @@ import React, { FC, Fragment, useState } from 'react';
 import { Box, Stack, Text, useColorMode } from '@chakra-ui/react';
 import { ESectionTitle, IContentTableProps } from './contentTable.types';
 import { FiChevronRight } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 const ContentTable: FC<IContentTableProps> = () => {
   const [activeSection, setActiveSection] = useState<ESectionTitle>(
@@ -18,22 +19,42 @@ const ContentTable: FC<IContentTableProps> = () => {
 
   const activeColor = colorMode === 'dark' ? 'white' : '#1C1C1C';
 
+  const handleSectionChange = (section: ESectionTitle) => {
+    setActiveSection(section);
+  };
+
   const renderMenuItem = (section: ESectionTitle) => {
     if (section == activeSection) {
       return (
         <Fragment>
-          <FiChevronRight color={activeColor} />
-          <Text ml={2} fontWeight={600} color={activeColor}>
-            {section}
-          </Text>
+          <Link
+            to={'/#tutorials'}
+            onClick={() => {
+              handleSectionChange(section);
+            }}
+          >
+            <Box display={'flex'} alignItems={'center'}>
+              <FiChevronRight color={activeColor} />
+              <Text ml={2} fontWeight={600} color={activeColor}>
+                {section}
+              </Text>
+            </Box>
+          </Link>
         </Fragment>
       );
     }
 
     return (
-      <Text color={'#A8A8A8'} fontWeight={600}>
-        {section}
-      </Text>
+      <Link
+        to={'/#tutorials'}
+        onClick={() => {
+          handleSectionChange(section);
+        }}
+      >
+        <Text color={'#A8A8A8'} fontWeight={600}>
+          {section}
+        </Text>
+      </Link>
     );
   };
 
