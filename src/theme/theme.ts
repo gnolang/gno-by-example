@@ -63,6 +63,9 @@ const theme = extendTheme({
       }
     })
   },
+  fonts: {
+    body: `'Consolas', sans-serif`
+  },
   config
 });
 
