@@ -1,4 +1,4 @@
-EXAMPLES_DIR = examples/*/*/*
+EXAMPLES_DIR = src/tutorials/*/*/*
 
 all: clean clone bin test
 
