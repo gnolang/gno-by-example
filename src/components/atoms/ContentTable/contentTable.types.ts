@@ -1,7 +1,8 @@
-export interface IContentTableProps {}
+export interface IContentTableProps {
+  sections: ISectionBundle[];
+}
 
-export enum ESectionTitle {
-  SECTION_1 = 'Section 1',
-  SECTION_2 = 'Section 2',
-  SECTION_3 = 'Section 3'
+export interface ISectionBundle {
+  id: string;
+  title: string;
 }
