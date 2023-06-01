@@ -2,7 +2,7 @@ package hello
 
 import "testing"
 
-func Test(t *testing.T) {
+func TestHello(t *testing.T) {
 	got := Render("")
 	expected := "Hello World!"
 	if got != expected {

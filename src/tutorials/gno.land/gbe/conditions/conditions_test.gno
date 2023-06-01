@@ -2,7 +2,7 @@ package conditions
 
 import "testing"
 
-func Test(t *testing.T) {
+func TestConditions(t *testing.T) {
 	gotIf := RenderIf("v1")
 	gotSwitch := RenderSwitch("v1")
 	expected := "value one"

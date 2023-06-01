@@ -2,7 +2,7 @@ package count
 
 import "testing"
 
-func Test(t *testing.T) {
+func TestCount(t *testing.T) {
 	Add()
 	Add()
 	Add()

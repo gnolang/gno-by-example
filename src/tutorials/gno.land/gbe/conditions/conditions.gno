@@ -12,13 +12,18 @@ func RenderIf(v string) string {
 	}
 }
 
-func RenderSwitch(v string) string {
+func RenderSwitch(v string) (out string) {
 	switch v {
-		case "v1":
-			return "value one"
-		case "v2":
-			return "value two"
-		default:
-			return "other value"
+	case "v1":
+		out = "value one"
+		break
+	case "v2":
+		out = "value two"
+		break
+	default:
+		out = "other value"
+		break
 	}
+
+	return
 }

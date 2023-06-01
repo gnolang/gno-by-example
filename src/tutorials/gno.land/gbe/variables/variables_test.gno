@@ -2,7 +2,7 @@ package variables
 
 import "testing"
 
-func Test(t *testing.T) {
+func TestVariables(t *testing.T) {
 	got := Render("user1")
 	expected := "Hello user1!. Call number 1"
 	if got != expected {

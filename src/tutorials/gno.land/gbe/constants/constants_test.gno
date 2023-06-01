@@ -2,7 +2,7 @@ package constants
 
 import "testing"
 
-func Test(t *testing.T) {
+func TestConstants(t *testing.T) {
 	got := Render("")
 	expected := "constant string"
 	if got != expected {
