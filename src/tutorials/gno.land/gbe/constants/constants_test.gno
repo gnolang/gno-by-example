@@ -1,14 +1,10 @@
-package count
+package constants
 
 import "testing"
 
-func TestCount(t *testing.T) {
-	Add()
-	Add()
-	Add()
-	Remove()
+func TestConstants(t *testing.T) {
 	got := Render("")
-	expected := "Count: 2"
+	expected := "constant string"
 	if got != expected {
 		t.Fatalf("expected %q, got %q.", expected, got)
 	}

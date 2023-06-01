@@ -2,7 +2,7 @@ package hello
 
 import "testing"
 
-func Test(t *testing.T) {
+func TestPrimitives(t *testing.T) {
 	got := Render("")
 	expected := "false, \"\" | 0, 0, 0, 0, 0 | 0, 0, 0, 0, 0 | 0, 0 | 0.000000, 0.000000"
 	if got != expected {
