@@ -1,0 +1,47 @@
+site_name: Gno By Example
+site_url: https://gno-by-example.com
+repo_url: https://github.com/gnolang/gno-by-example
+repo_name: gnolang/gno-by-example
+
+theme:
+  name: material
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: grey
+      accent: indigo
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: grey
+      accent: indigo
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
+  features:
+    - navigation.instant
+    - navigation.tracking
+    - navigation.sections
+    - navigation.expand
+    - toc.integrate
+    - toc.follow
+
+plugins:
+    - search
+    - awesome-pages:
+        collapse_single_pages: true
+        filename: .pages.yml
+    - pagenav-generator
+    
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets:
+      base_path: 'docs/tutorials/gno.land/gbe'
+  - pymdownx.superfences
