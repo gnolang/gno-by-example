@@ -1,9 +1,43 @@
 import fs from 'fs';
+import yaml from 'yaml';
 import path from 'path';
+import { TutorialItem, TutorialMetadata } from './types';
+import prettier from 'prettier';
+import { constructLink, generateImportFromLink } from './utility';
+
+// Extracts the single tutorial metadata
+const extractMetadata = (content: string): TutorialMetadata | null => {
+  const marker: string = '---';
+
+  const startIndex: number = content.indexOf(marker);
+  const endIndex: number = content.indexOf(marker, startIndex + marker.length);
+
+  if (startIndex === -1 || endIndex === -1) {
+    // Invalid metadata section
+    return null;
+  }
+
+  try {
+    const yamlObject = yaml.parse(
+      content.substring(startIndex + marker.length, endIndex).trim()
+    );
+
+    const { title, section } = yamlObject;
+
+    return {
+      title,
+      section
+    };
+  } catch (error) {
+    console.error('❌ Error parsing metadata YAML:', error);
+
+    return null;
+  }
+};
 
 // Parses the .md files in the given directory, and generates
 // corresponding Typescript exports
-function parseMDFiles(directory: string) {
+const parseTutorial = (directory: string): TutorialItem => {
   // Find the root .md file in the directory (should be only one)
   const mdFiles = fs
     .readdirSync(directory)
@@ -16,6 +50,14 @@ function parseMDFiles(directory: string) {
 
   const mdFilePath = path.join(directory, mdFiles[0]);
   let mdContent = fs.readFileSync(mdFilePath, 'utf-8');
+
+  // Extract the tutorial metadata
+  const metadata: TutorialMetadata | null = extractMetadata(mdContent);
+  if (!metadata) {
+    console.error(`❌ Invalid metadata for markdown ${mdFilePath}`);
+
+    return;
+  }
 
   // Find all the code segments
   const codeReferences = mdContent.match(/```([\s\S]+?)```/g) || [];
@@ -72,15 +114,103 @@ function parseMDFiles(directory: string) {
     mdContent = mdContent.replace(codeRef, embeddedCodeBlock);
   }
 
-  // Make sure to escape the backticks
+  // Make sure to escape the code block backticks
   mdContent = mdContent.replace(/```(?!.*```)/g, '\\`\\`\\`');
 
+  // Make sure to escape all other backticks
+  mdContent = mdContent.replace(/([^\\])`/g, '$1\\`');
+
+  // Make sure to drop the metadata section
+  mdContent = mdContent.replace(/---[\s\S]*?---/, '');
+
   const tsFilePath = path.join(directory, 'index.ts');
-  const tsContent = `export const markdownContent = \n\`${mdContent}\`;\n`;
+  let output: string = `const markdownContent: string = \n\`${mdContent}\`;\n`;
 
-  fs.writeFileSync(tsFilePath, tsContent);
+  output += `
+  const title: string = "${metadata.title}";\n
+  const section: string = "${metadata.section}";\n
+  `;
 
-  console.log('Parsing completed');
-}
+  output += `const tutorialData = {
+    content: markdownContent,
+    metadata: {
+      title,
+      section,
+    },
+  };\n\n`;
+  output += `export default tutorialData;\n`;
 
-parseMDFiles('/Users/zmilos/Work/gno-by-example/src/components/pages/Tutorial')
+  // Generate the index.ts
+  fs.writeFileSync(tsFilePath, output);
+
+  return {
+    dataPath:
+      './' +
+      path.relative('./src', path.resolve(tsFilePath)).replace(/\.ts/g, ''),
+    link: constructLink(metadata.title)
+  };
+};
+
+// Generates tutorial routes file based on the tutorial list
+const generateTutorialRoutes = (items: TutorialItem[], outputFile: string) => {
+  let output = '';
+
+  items.forEach((item: TutorialItem) => {
+    const importItem = generateImportFromLink(item.link);
+    output += `import ${importItem} from "${item.dataPath}";\n`;
+  });
+
+  output += '\n';
+
+  const arrayLiteral = items
+    .map(
+      (item: TutorialItem) => `{
+        link: "${item.link}",
+        data: ${generateImportFromLink(item.link)},
+      }`
+    )
+    .join(',\n');
+
+  output += `const tutorials = [
+    ${arrayLiteral}
+  ];\n\n`;
+
+  output += 'export default tutorials;\n';
+
+  try {
+    const formattedOutput = prettier.format(output, { parser: 'babel' });
+    fs.writeFileSync(outputFile, formattedOutput);
+
+    console.log(
+      `\n✅ Tutorial routes generated successfully in ${outputFile}!\n`
+    );
+  } catch (error) {
+    console.error('❌ Error occurred while generating tutorial routes:', error);
+  }
+};
+
+// Generate the corresponding tutorials in the subdirectories
+// and write out the tutorial routes
+const generateTutorials = () => {
+  const baseDir: string = './src/tutorials/gno.land/gbe';
+  // const baseDir: string = './scripts/dummy';
+  const subDirs: string[] = fs.readdirSync(baseDir);
+  const tutorialItems: TutorialItem[] = [];
+
+  subDirs.forEach((subDir: string) => {
+    const subDirPath: string = path.join(baseDir, subDir);
+    const isDirectory: boolean = fs.statSync(subDirPath).isDirectory();
+
+    if (isDirectory) {
+      // Generate the tutorial for this subdirectory
+      tutorialItems.push(parseTutorial(subDirPath));
+      console.log(`✅ Generated tutorial for: ${subDirPath}`);
+    }
+  });
+
+  generateTutorialRoutes(tutorialItems, './src/tutorials.ts');
+};
+
+// Generate the tutorials
+// and corresponding tutorial routes
+generateTutorials();

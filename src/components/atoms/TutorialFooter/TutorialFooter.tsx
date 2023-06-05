@@ -1,9 +1,12 @@
-import { ITutorialFooter } from './tutorialFooter.types';
+import { ITutorialFooterProps } from './tutorialFooter.types';
 import { Box, Button, Divider } from '@chakra-ui/react';
 import { HiChevronDoubleLeft, HiChevronDoubleRight } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
+import { FC } from 'react';
 
-const TutorialFooter = ({ prev, next }: ITutorialFooter) => {
+const TutorialFooter: FC<ITutorialFooterProps> = (props) => {
+  const { prev, next } = props;
+
   return (
     <Box display="flex" flexDirection="column">
       <Box width="100%" my={6}>

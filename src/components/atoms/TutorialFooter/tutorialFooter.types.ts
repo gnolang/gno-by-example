@@ -1,4 +1,4 @@
-export interface ITutorialFooter {
+export interface ITutorialFooterProps {
   prev?: IItemInfo;
   next?: IItemInfo;
 }
