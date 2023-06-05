@@ -1,13 +1,6 @@
 import IFooterProps from './footer.types';
 import React, { FC } from 'react';
-import {
-  Box,
-  Container,
-  Link,
-  Text,
-  useMediaQuery,
-  useTheme
-} from '@chakra-ui/react';
+import { Box, Container, Link, Text, useTheme } from '@chakra-ui/react';
 import { BsDiscord, BsGithub, BsTelegram, BsTwitter } from 'react-icons/bs';
 import Logo from '../../atoms/Logo/Logo';
 
@@ -70,6 +63,7 @@ const Footer: FC<IFooterProps> = () => {
             Check out the{' '}
             <Link
               color={theme.colors.gno.accent1}
+              isExternal
               href={'https://github.com/gnolang/gno-by-example'}
             >
               GitHub repo
