@@ -1,6 +1,13 @@
 import React, { FC } from 'react';
 import { MarkdownComponentProps } from './markdown.types';
-import { Box, Button, Tooltip, useColorMode, useToast } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Tooltip,
+  useColorMode,
+  useTheme,
+  useToast
+} from '@chakra-ui/react';
 import { IoCopy } from 'react-icons/io5';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import {
@@ -9,15 +16,53 @@ import {
 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const MarkdownCode: FC<MarkdownComponentProps> = ({ children, ...props }) => {
-  const language = props.className.replace('lang-', '');
-
   const toast = useToast();
   const id = 'copy-toast';
 
   const { colorMode } = useColorMode();
+  const theme = useTheme();
 
   const isLight = colorMode === 'light';
-  const codeWrapper = isLight ? '#F1F1F1' : '#3A3A3A';
+  const codeWrapper = isLight
+    ? theme.colors.gno.grayscale1
+    : theme.colors.gno.grayscale3;
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        if (!toast.isActive(id)) {
+          toast({
+            id,
+            title: `Copied!`,
+            status: 'success',
+            position: 'bottom',
+            isClosable: true,
+            duration: 3000
+          });
+        }
+      })
+      .catch((error) => {
+        console.error('Failed to copy text:', error);
+      });
+  };
+
+  if (!props.className) {
+    // Inline code block
+    return (
+      <Box
+        display={'inline'}
+        padding={'5px'}
+        backgroundColor={codeWrapper}
+        borderRadius={'5px'}
+      >
+        {children}
+      </Box>
+    );
+  }
+
+  // Get the code block language for the highlighter
+  const language = props.className.replace('lang-', '');
 
   return (
     <Box
@@ -36,16 +81,7 @@ const MarkdownCode: FC<MarkdownComponentProps> = ({ children, ...props }) => {
             variant="ghost"
             size={'sm'}
             onClick={() => {
-              if (!toast.isActive(id)) {
-                toast({
-                  id,
-                  title: `Copied!`,
-                  status: 'success',
-                  position: 'bottom',
-                  isClosable: true,
-                  duration: 3000
-                });
-              }
+              copyToClipboard(children as string);
             }}
           >
             Copy

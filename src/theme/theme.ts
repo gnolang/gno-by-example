@@ -64,7 +64,22 @@ const theme = extendTheme({
     })
   },
   fonts: {
-    body: `'Consolas', sans-serif`
+    body: 'Inter, sans-serif'
+  },
+  colors: {
+    gno: {
+      light: '#FFFFFF',
+      dark: '#1C1C1C',
+      grayscale1: '#F1F1F1',
+      grayscale1a: '#E1E1E1',
+      grayscale2: '#A8A8A8',
+      grayscale2a: '#989898',
+      grayscale2b: '#626262',
+      grayscale3: '#3A3A3A',
+      grayscale4: '#282828',
+      grayscale5: '#141414',
+      accent1: '#3367EC'
+    }
   },
   config
 });

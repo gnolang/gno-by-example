@@ -1,86 +1,51 @@
-import React, { FC, Fragment, useEffect, useState } from 'react';
-import { Box, Stack, Text, useColorMode } from '@chakra-ui/react';
-import { IContentTableProps, ISectionBundle } from './contentTable.types';
-import { FiChevronRight } from 'react-icons/fi';
-import { Link, useLocation } from 'react-router-dom';
+import React, { FC, useEffect, useRef, useState } from 'react';
+import { Box, Stack, Text, useColorMode, useTheme } from '@chakra-ui/react';
+import { IContentTableProps } from './contentTable.types';
+import { useLocation } from 'react-router-dom';
 import styles from './contentTable.module.css';
+import ContentTableItem from '../ContentTableItem/ContentTableItem';
 
-const ContentTable: FC<IContentTableProps> = (props) => {
-  const { sections } = props;
-
-  const [activeSection, setActiveSection] = useState<string>(sections[0].title);
-
+const ContentTable: FC<IContentTableProps> = ({ sections }) => {
+  const [activeSection, setActiveSection] = useState<string>('');
+  const scrollRef = useRef<HTMLElement | null>(null);
   const { colorMode } = useColorMode();
-
-  const activeColor = colorMode === 'dark' ? 'white' : '#1C1C1C';
-
-  const handleSectionChange = (section: string) => {
-    setActiveSection(section);
-  };
-
+  const theme = useTheme();
   const { pathname, hash, key } = useLocation();
+
+  const wrapperColor =
+    colorMode === 'dark' ? theme.colors.gno.dark : theme.colors.gno.light;
+
+  useEffect(() => {
+    if (sections.length > 0) {
+      setActiveSection(sections[0].title);
+    }
+  }, [sections]);
 
   useEffect(() => {
     if (hash === '') {
       // Scroll to top
       window.scrollTo(0, 0);
-
-      return;
-    }
-
-    const timeoutID = setTimeout(() => {
-      // Scroll to item
+    } else {
       const id = hash.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView();
-      }
-    }, 0);
+
+      scrollRef.current = document.getElementById(id);
+    }
 
     return () => {
-      clearTimeout(timeoutID);
+      // Cleanup function to reset scroll position
+      scrollRef.current = null;
     };
-  }, [pathname, hash, key]); // do this on route change
+  }, [pathname, hash, key]); // Perform this on route change
 
-  const renderMenuItem = (section: ISectionBundle) => {
-    if (section.title == activeSection) {
-      return (
-        <Fragment>
-          <a
-            href={`/#${section.id}`}
-            onClick={() => {
-              handleSectionChange(section.title);
-            }}
-          >
-            <Box display={'flex'} alignItems={'center'}>
-              <FiChevronRight color={activeColor} />
-              <Text ml={2} fontWeight={600} color={activeColor}>
-                {section.title}
-              </Text>
-            </Box>
-          </a>
-        </Fragment>
-      );
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-
-    return (
-      <Link
-        to={`/#${section.id}`}
-        onClick={() => {
-          handleSectionChange(section.title);
-        }}
-      >
-        <Text color={'#A8A8A8'} fontWeight={600}>
-          {section.title}
-        </Text>
-      </Link>
-    );
-  };
-
-  const wrapperColor = colorMode === 'dark' ? '#1C1C1C' : 'white';
+  }, [scrollRef.current]);
 
   return (
     <Box
+      minWidth={'300px'}
       padding={'20px 100px 20px 30px'}
       backgroundColor={wrapperColor}
       borderRadius={'10px'}
@@ -90,6 +55,7 @@ const ContentTable: FC<IContentTableProps> = (props) => {
       className={styles.contentTable}
     >
       <Stack direction={'column'} spacing={'15px'}>
+        {sections.length === 0 && <Text>No sections available</Text>}
         {sections.map((section, index) => {
           return (
             <Box
@@ -97,7 +63,11 @@ const ContentTable: FC<IContentTableProps> = (props) => {
               display={'flex'}
               alignItems={'center'}
             >
-              {renderMenuItem(section)}
+              <ContentTableItem
+                section={section}
+                activeSection={activeSection}
+                setActiveSection={setActiveSection}
+              />
             </Box>
           );
         })}

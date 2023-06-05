@@ -141,7 +141,7 @@ const parseTutorial = (directory: string): TutorialItem => {
   output += `export default tutorialData;\n`;
 
   // Generate the index.ts
-  fs.writeFileSync(tsFilePath, output);
+  fs.writeFileSync(tsFilePath, prettier.format(output, { parser: 'babel' }));
 
   return {
     dataPath:

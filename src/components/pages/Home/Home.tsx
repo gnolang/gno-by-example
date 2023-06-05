@@ -1,4 +1,4 @@
-import { IHomeProps } from './home.types';
+import { IHomeProps, ITutorialSection } from './home.types';
 import React, { FC, useEffect, useState } from 'react';
 import {
   Box,
@@ -7,153 +7,92 @@ import {
   InputLeftElement,
   Stack,
   Text,
-  useColorMode
+  useColorMode,
+  useTheme
 } from '@chakra-ui/react';
 import ContentTable from '../../atoms/ContentTable/ContentTable';
 import Title from '../../atoms/Title/Title';
 import { BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
+import tutorials from '../../../tutorials';
 
 const Home: FC<IHomeProps> = () => {
-  interface TutorialSection {
-    section: string;
-    items: {
-      title: string;
-      link: string;
-    }[];
-  }
-
-  const tutorialSections: TutorialSection[] = [
-    {
-      section: 'Section 1',
-      items: [
-        {
-          title: 'Item 1',
-          link: '/tutorials/1'
-        },
-        {
-          title: 'Item 2',
-          link: '/tutorials/2'
-        },
-        {
-          title: 'Item 3',
-          link: '/tutorials/3'
-        }
-      ]
-    },
-    {
-      section: 'Section 2',
-      items: [
-        {
-          title: 'Item 1',
-          link: '/tutorials/4'
-        },
-        {
-          title: 'Item 2',
-          link: '/tutorials/5'
-        },
-        {
-          title: 'Item 3',
-          link: '/tutorials/6'
-        }
-      ]
-    },
-    {
-      section: 'Section 3',
-      items: [
-        {
-          title: 'Item 1',
-          link: '/tutorials/4'
-        },
-        {
-          title: 'Item 2',
-          link: '/tutorials/5'
-        },
-        {
-          title: 'Item 3',
-          link: '/tutorials/6'
-        }
-      ]
-    },
-    {
-      section: 'Section 4',
-      items: [
-        {
-          title: 'Item 1',
-          link: '/tutorials/4'
-        },
-        {
-          title: 'Item 2',
-          link: '/tutorials/5'
-        },
-        {
-          title: 'Item 3',
-          link: '/tutorials/6'
-        }
-      ]
-    },
-    {
-      section: 'Section 5',
-      items: [
-        {
-          title: 'Item 1',
-          link: '/tutorials/4'
-        },
-        {
-          title: 'Item 2',
-          link: '/tutorials/5'
-        },
-        {
-          title: 'Item 3',
-          link: '/tutorials/6'
-        }
-      ]
-    }
-  ];
-
   const { colorMode } = useColorMode();
+  const theme = useTheme();
   const isLight = colorMode === 'light';
 
+  const [tutorialSections, setTutorialSections] = useState<ITutorialSection[]>(
+    []
+  );
   const [displayedSections, setDisplayedSections] =
-    useState<TutorialSection[]>(tutorialSections);
-
+    useState<ITutorialSection[]>(tutorialSections);
   const [searchQuery, setSearchQuery] = useState<string>('');
 
-  const handleInputChange = (event: any) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
-
-  useEffect(() => {
-    if (!searchQuery) {
-      setDisplayedSections(tutorialSections);
-    }
-
-    const filtered: TutorialSection[] = [];
-    tutorialSections.map((value) => {
-      const items = value.items.filter((item) => {
-        return item.title.includes(searchQuery);
-      });
-
-      if (items.length > 0) {
-        filtered.push({
-          section: value.section,
-          items
-        });
-      }
-    });
-
-    setDisplayedSections(filtered);
-  }, [searchQuery]);
 
   const createID = (input: string) => {
     return input.trim().toLowerCase().replace(/\s+/g, '-');
   };
 
+  useEffect(() => {
+    if (tutorials.length < 1) {
+      return;
+    }
+
+    const sectionsMap: { [section: string]: ITutorialSection } = {};
+
+    for (const tutorial of tutorials) {
+      const { data, link } = tutorial;
+      const section = data.metadata.section;
+
+      if (!sectionsMap[section]) {
+        sectionsMap[section] = {
+          section,
+          items: []
+        };
+      }
+
+      const title = data.metadata.title;
+      sectionsMap[section].items.push({ title, link });
+    }
+
+    const sections = Object.values(sectionsMap);
+
+    setTutorialSections(sections);
+    setDisplayedSections(sections);
+  }, []);
+
+  useEffect(() => {
+    if (!searchQuery) {
+      setDisplayedSections(tutorialSections);
+      return;
+    }
+
+    const filtered = tutorialSections
+      .map((value) => {
+        const items = value.items.filter((item) =>
+          item.title.includes(searchQuery)
+        );
+        if (items.length > 0) {
+          return {
+            section: value.section,
+            items
+          };
+        }
+        return null;
+      })
+      .filter(Boolean) as ITutorialSection[];
+
+    setDisplayedSections(filtered);
+  }, [searchQuery, tutorialSections]);
+
   return (
     <Box display={'flex'}>
       <ContentTable
-        sections={tutorialSections.map((article) => {
+        sections={displayedSections.map((article) => {
           return {
             title: article.section,
             id: `section-${createID(article.section)}`
@@ -165,23 +104,23 @@ const Home: FC<IHomeProps> = () => {
         <Box width={'400px'} mt={6}>
           <InputGroup>
             <InputLeftElement pointerEvents="none">
-              <BsSearch color="#A8A8A8" />
+              <BsSearch color={theme.colors.gno.grayscale2} />
             </InputLeftElement>
             <Input
               type="search"
               placeholder="Search"
               variant="outline"
-              focusBorderColor={'#A8A8A8'}
+              focusBorderColor={theme.colors.gno.grayscale2}
               _placeholder={{
                 color: clsx({
-                  ['#A8A8A8']: isLight,
-                  ['white']: !isLight
+                  [theme.colors.gno.grayscale2]: isLight,
+                  [theme.colors.gno.light]: !isLight
                 })
               }}
               css={{
                 background: clsx({
-                  ['#F1F1F1']: isLight,
-                  ['#1C1C1C']: !isLight
+                  [theme.colors.gno.grayscale1]: isLight,
+                  [theme.colors.gno.dark]: !isLight
                 })
               }}
               onChange={handleInputChange}
@@ -189,7 +128,7 @@ const Home: FC<IHomeProps> = () => {
           </InputGroup>
         </Box>
         <Stack mt={6} direction={'column'} spacing={'20px'}>
-          {displayedSections.length == 0 && <Text>No search results</Text>}
+          {displayedSections.length === 0 && <Text>No search results</Text>}
           {displayedSections.map((article, index) => {
             return (
               <Box
@@ -211,7 +150,7 @@ const Home: FC<IHomeProps> = () => {
                     return (
                       <Link
                         key={`article-${article.section}-${index}`}
-                        to={item.link}
+                        to={`/tutorials/${item.link}`}
                       >
                         <Text textDecoration={'underline'}>{item.title}</Text>
                       </Link>

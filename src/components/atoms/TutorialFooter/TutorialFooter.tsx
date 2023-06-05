@@ -4,14 +4,10 @@ import { HiChevronDoubleLeft, HiChevronDoubleRight } from 'react-icons/hi2';
 import { Link } from 'react-router-dom';
 import { FC } from 'react';
 
-const TutorialFooter: FC<ITutorialFooterProps> = (props) => {
-  const { prev, next } = props;
-
+const TutorialFooter: FC<ITutorialFooterProps> = ({ prev, next }) => {
   return (
     <Box display="flex" flexDirection="column">
-      <Box width="100%" my={6}>
-        <Divider />
-      </Box>
+      <Divider my={6} />
       <Box
         display="flex"
         alignItems="center"
@@ -19,7 +15,7 @@ const TutorialFooter: FC<ITutorialFooterProps> = (props) => {
         width="100%"
       >
         {prev && (
-          <Link to={`/${prev.link}`}>
+          <Link to={prev.link}>
             <Button
               leftIcon={<HiChevronDoubleLeft />}
               variant="outline"
@@ -30,7 +26,7 @@ const TutorialFooter: FC<ITutorialFooterProps> = (props) => {
           </Link>
         )}
         {next && (
-          <Link to={`/${next.link}`}>
+          <Link to={next.link}>
             <Button
               rightIcon={<HiChevronDoubleRight />}
               variant="outline"

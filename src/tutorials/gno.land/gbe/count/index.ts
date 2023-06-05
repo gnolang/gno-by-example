@@ -1,6 +1,4 @@
-const markdownContent: string = 
-`
-
+const markdownContent: string = `
 
 Let's create our first application. This realm is able to add and substract from a global count variable using \`Add()\`
 and \`Remove()\` methods. The state will be saved between executions.
@@ -48,16 +46,16 @@ func TestCount(t *testing.T) {
 \`\`\`
 `;
 
-  const title: string = "Counting";
+const title: string = "Counting";
 
-  const section: string = "Section 1";
+const section: string = "Section 1";
 
-  const tutorialData = {
-    content: markdownContent,
-    metadata: {
-      title,
-      section,
-    },
-  };
+const tutorialData = {
+  content: markdownContent,
+  metadata: {
+    title,
+    section,
+  },
+};
 
 export default tutorialData;

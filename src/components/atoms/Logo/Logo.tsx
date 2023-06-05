@@ -8,11 +8,13 @@ import { ILogoProps } from './logo.types';
 const Logo: FC<ILogoProps> = () => {
   const { colorMode } = useColorMode();
 
-  const image = colorMode === 'dark' ? gnolandWhite : gnolandBlack;
-
   return (
     <Link to={'/'}>
-      <Image src={image} height={'auto'} width={'150px'} />
+      <Image
+        src={colorMode === 'light' ? gnolandBlack : gnolandWhite}
+        height={'auto'}
+        width={'150px'}
+      />
     </Link>
   );
 };

@@ -1,5 +1,4 @@
-const markdownContent: string = 
-`
+const markdownContent: string = `
 
 This is the simplest application that you can create using Gno. \`Render(string) string\` is a special method that will be
 used by \`gnoweb\` to render markdown output.
@@ -29,16 +28,16 @@ func TestHello(t *testing.T) {
 \`\`\`
 `;
 
-  const title: string = "Hello World";
+const title: string = "Hello World";
 
-  const section: string = "Section 1";
+const section: string = "Section 1";
 
-  const tutorialData = {
-    content: markdownContent,
-    metadata: {
-      title,
-      section,
-    },
-  };
+const tutorialData = {
+  content: markdownContent,
+  metadata: {
+    title,
+    section,
+  },
+};
 
 export default tutorialData;

@@ -3,7 +3,6 @@ title: Counting
 section: Section 1
 ---
 
-
 Let's create our first application. This realm is able to add and substract from a global count variable using `Add()`
 and `Remove()` methods. The state will be saved between executions.
 

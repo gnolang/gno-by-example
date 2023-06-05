@@ -1,5 +1,4 @@
-const markdownContent: string = 
-`
+const markdownContent: string = `
 
 TBD
 
@@ -45,16 +44,16 @@ func TestVariables(t *testing.T) {
 \`\`\`
 `;
 
-  const title: string = "Variables";
+const title: string = "Variables";
 
-  const section: string = "Section 1";
+const section: string = "Section 1";
 
-  const tutorialData = {
-    content: markdownContent,
-    metadata: {
-      title,
-      section,
-    },
-  };
+const tutorialData = {
+  content: markdownContent,
+  metadata: {
+    title,
+    section,
+  },
+};
 
 export default tutorialData;

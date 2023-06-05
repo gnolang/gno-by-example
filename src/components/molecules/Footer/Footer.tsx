@@ -1,11 +1,13 @@
 import IFooterProps from './footer.types';
 import React, { FC } from 'react';
-import { Box, Container, Link, Text } from '@chakra-ui/react';
+import { Box, Container, Link, Text, useTheme } from '@chakra-ui/react';
 import { BsDiscord, BsGithub, BsTelegram, BsTwitter } from 'react-icons/bs';
 import Logo from '../../atoms/Logo/Logo';
 
 const Footer: FC<IFooterProps> = () => {
-  const iconColor: string = '#626262';
+  const theme = useTheme();
+
+  const iconColor: string = theme.colors.gno.grayscale2b;
   const iconSize: string = '30px';
 
   const icons = [
@@ -43,7 +45,7 @@ const Footer: FC<IFooterProps> = () => {
             <br />
             Check out the{' '}
             <Link
-              color={'#3367EC'}
+              color={theme.colors.gno.accent1}
               href={'https://github.com/gnolang/gno-by-example'}
             >
               GitHub repo
@@ -57,13 +59,11 @@ const Footer: FC<IFooterProps> = () => {
             be part of the conversation:
           </Text>
           <Box display={'flex'} justifyContent={'space-between'}>
-            {icons.map((socialIcon, index) => {
-              return (
-                <Link key={`social-${index}`} href={socialIcon.link} isExternal>
-                  {socialIcon.icon}
-                </Link>
-              );
-            })}
+            {icons.map((socialIcon, index) => (
+              <Link key={`social-${index}`} href={socialIcon.link} isExternal>
+                {socialIcon.icon}
+              </Link>
+            ))}
           </Box>
         </Box>
       </Box>

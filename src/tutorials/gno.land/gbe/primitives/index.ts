@@ -1,5 +1,4 @@
-const markdownContent: string = 
-`
+const markdownContent: string = `
 
 Example using primitives.
 Take into account that special types that are not in Go language will be implemented for easy of usage, like bigint.
@@ -132,16 +131,16 @@ func TestPrimitives(t *testing.T) {
 \`\`\`
 `;
 
-  const title: string = "Primitives";
+const title: string = "Primitives";
 
-  const section: string = "Section 1";
+const section: string = "Section 1";
 
-  const tutorialData = {
-    content: markdownContent,
-    metadata: {
-      title,
-      section,
-    },
-  };
+const tutorialData = {
+  content: markdownContent,
+  metadata: {
+    title,
+    section,
+  },
+};
 
 export default tutorialData;

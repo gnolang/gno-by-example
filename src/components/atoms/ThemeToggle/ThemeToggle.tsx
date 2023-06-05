@@ -1,54 +1,41 @@
 import { IThemeToggleProps } from './themeToggle.types';
-import React, { FC, useEffect } from 'react';
-import { Box, IconButton, useColorMode } from '@chakra-ui/react';
+import React, { FC } from 'react';
+import { Box, IconButton, useColorMode, useTheme } from '@chakra-ui/react';
 import { BsMoonFill, BsSunFill } from 'react-icons/bs';
 import clsx from 'clsx';
 import styles from './themeToggle.module.css';
 
 const ThemeToggle: FC<IThemeToggleProps> = () => {
   const { colorMode, setColorMode } = useColorMode();
-
+  const theme = useTheme();
   const isLight: boolean = colorMode === 'light';
 
-  useEffect(() => {}, [colorMode]);
-
   const renderIcon = (light: boolean) => {
-    const commonProps = {
-      variant: 'ghost',
-      borderRadius: '10px',
-      size: 'sm'
-    };
+    const icon = light ? <BsSunFill /> : <BsMoonFill />;
+    const label = light ? 'Light' : 'Dark';
 
-    if (light) {
-      return (
-        <IconButton
-          aria-label={'Light'}
-          icon={<BsSunFill />}
-          ml={1}
-          onClick={() => {
-            setColorMode('light');
-          }}
-          className={clsx({
-            [styles.activeSun]: isLight,
-            [styles.inactiveSun]: !isLight
-          })}
-          {...commonProps}
-        />
-      );
-    }
+    const sunClasses = clsx({
+      [styles.activeSun]: isLight,
+      [styles.inactiveSun]: !isLight
+    });
+
+    const moonClasses = clsx({
+      [styles.activeMoon]: !isLight,
+      [styles.inactiveMoon]: isLight
+    });
 
     return (
       <IconButton
-        aria-label={'Dark'}
-        icon={<BsMoonFill />}
+        aria-label={label}
+        icon={icon}
         onClick={() => {
-          setColorMode('dark');
+          setColorMode(light ? 'light' : 'dark');
         }}
-        className={clsx({
-          [styles.activeMoon]: !isLight,
-          [styles.inactiveMoon]: isLight
-        })}
-        {...commonProps}
+        ml={light ? 1 : 0}
+        className={light ? sunClasses : moonClasses}
+        variant="ghost"
+        borderRadius="10px"
+        size="sm"
       />
     );
   };
@@ -58,8 +45,8 @@ const ThemeToggle: FC<IThemeToggleProps> = () => {
       display={'flex'}
       alignItems={'center'}
       backgroundColor={clsx({
-        ['#E1E1E1']: isLight,
-        ['#141414']: !isLight
+        [theme.colors.gno.grayscale1a]: isLight,
+        [theme.colors.gno.grayscale5]: !isLight
       })}
       padding={1}
       borderRadius={'15px'}

@@ -1,25 +1,25 @@
 import { ITutorialTitleProps } from './tutorialTitle.types';
-import * as React from 'react';
 import { FC } from 'react';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Box, IconButton } from '@chakra-ui/react';
 import { IoArrowBack } from 'react-icons/io5';
 import Title from '../Title/Title';
 
-const TutorialTitle: FC<ITutorialTitleProps> = (props) => {
-  const { text } = props;
+const TutorialTitle: FC<ITutorialTitleProps> = ({ text }) => {
+  const navigate = useNavigate();
 
   return (
     <Box mb={4} display={'flex'} alignItems={'center'}>
-      <Link to={'/'}>
-        <IconButton
-          icon={<IoArrowBack />}
-          aria-label="Back"
-          size="md"
-          variant="ghost"
-          mr={4}
-        />
-      </Link>
+      <IconButton
+        icon={<IoArrowBack />}
+        aria-label="Back"
+        size="md"
+        variant="ghost"
+        mr={4}
+        onClick={() => {
+          navigate(-1);
+        }}
+      />
       <Title text={text} size={'3xl'} />
     </Box>
   );
