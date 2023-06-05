@@ -1,6 +1,13 @@
 import IFooterProps from './footer.types';
 import React, { FC } from 'react';
-import { Box, Container, Link, Text, useTheme } from '@chakra-ui/react';
+import {
+  Box,
+  Container,
+  Link,
+  Text,
+  useMediaQuery,
+  useTheme
+} from '@chakra-ui/react';
 import { BsDiscord, BsGithub, BsTelegram, BsTwitter } from 'react-icons/bs';
 import Logo from '../../atoms/Logo/Logo';
 
@@ -33,10 +40,27 @@ const Footer: FC<IFooterProps> = () => {
     <Container maxW={'80vw'} my={10}>
       <Box
         display={'flex'}
-        justifyContent={'space-between'}
-        alignItems={'center'}
+        justifyContent={{
+          base: 'flex-start',
+          lg: 'space-between'
+        }}
+        alignItems={{
+          base: 'flex-start',
+          lg: 'center'
+        }}
+        flexDirection={{
+          base: 'column',
+          lg: 'row'
+        }}
       >
-        <Box display={'flex'} flexDirection={'column'}>
+        <Box
+          display={'flex'}
+          flexDirection={'column'}
+          mb={{
+            base: 4,
+            lg: 0
+          }}
+        >
           <Box mb={6}>
             <Logo />
           </Box>

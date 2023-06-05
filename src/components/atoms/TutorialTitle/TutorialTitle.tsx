@@ -17,7 +17,7 @@ const TutorialTitle: FC<ITutorialTitleProps> = ({ text }) => {
         variant="ghost"
         mr={4}
         onClick={() => {
-          navigate(-1);
+          navigate('/');
         }}
       />
       <Title text={text} size={'3xl'} />

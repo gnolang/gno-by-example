@@ -8,9 +8,10 @@ import {
   Stack,
   Text,
   useColorMode,
+  useMediaQuery,
   useTheme
 } from '@chakra-ui/react';
-import ContentTable from '../../atoms/ContentTable/ContentTable';
+import ContentTable from '../../molecules/ContentTable/ContentTable';
 import Title from '../../atoms/Title/Title';
 import { BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
@@ -89,19 +90,29 @@ const Home: FC<IHomeProps> = () => {
     setDisplayedSections(filtered);
   }, [searchQuery, tutorialSections]);
 
+  const [isLgOrLarger] = useMediaQuery('(min-width: 62em)');
+
   return (
     <Box display={'flex'}>
-      <ContentTable
-        sections={displayedSections.map((article) => {
-          return {
-            title: article.section,
-            id: `section-${createID(article.section)}`
-          };
-        })}
-      />
-      <Box ml={20} display={'flex'} flexDirection={'column'}>
+      {isLgOrLarger && (
+        <ContentTable
+          sections={displayedSections.map((article) => {
+            return {
+              title: article.section,
+              id: `section-${createID(article.section)}`
+            };
+          })}
+        />
+      )}
+      <Box ml={{
+        base: 0,
+        lg: 20
+      }} display={'flex'} flexDirection={'column'}>
         <Title text={'Gno.land by Example'} size={'4xl'} />
-        <Box width={'400px'} mt={6}>
+        <Box width={{
+          base: '100%',
+          lg: '400px'
+        }} mt={6}>
           <InputGroup>
             <InputLeftElement pointerEvents="none">
               <BsSearch color={theme.colors.gno.grayscale2} />

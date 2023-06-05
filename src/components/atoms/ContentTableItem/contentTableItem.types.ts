@@ -1,4 +1,4 @@
-import { ISectionBundle } from '../ContentTable/contentTable.types';
+import { ISectionBundle } from '../../molecules/ContentTable/contentTable.types';
 
 export interface IContentTableItemProps {
   section: ISectionBundle;

@@ -3,7 +3,7 @@ import { Box, Stack, Text, useColorMode, useTheme } from '@chakra-ui/react';
 import { IContentTableProps } from './contentTable.types';
 import { useLocation } from 'react-router-dom';
 import styles from './contentTable.module.css';
-import ContentTableItem from '../ContentTableItem/ContentTableItem';
+import ContentTableItem from '../../atoms/ContentTableItem/ContentTableItem';
 
 const ContentTable: FC<IContentTableProps> = ({ sections }) => {
   const [activeSection, setActiveSection] = useState<string>('');
