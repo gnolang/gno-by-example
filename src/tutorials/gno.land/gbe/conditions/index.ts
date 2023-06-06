@@ -1,12 +1,8 @@
 const markdownContent: string = `
 
-TBD
+As in Go, we have two ways to check for specific conditions, using \`if\` statements and \`switch\`es:
 
 \`\`\`go
-package conditions
-
-import "fmt"
-
 func RenderIf(v string) string {
 	if v == "v1" {
 		return "value one"
@@ -16,7 +12,9 @@ func RenderIf(v string) string {
 		return "other value"
 	}
 }
+\`\`\`
 
+\`\`\`go
 func RenderSwitch(v string) (out string) {
 	switch v {
 	case "v1":
@@ -32,45 +30,12 @@ func RenderSwitch(v string) (out string) {
 
 	return
 }
-
 \`\`\`
-
-Tests:
-
-\`\`\`go
-package conditions
-
-import "testing"
-
-func TestConditions(t *testing.T) {
-	gotIf := RenderIf("v1")
-	gotSwitch := RenderSwitch("v1")
-	expected := "value one"
-	if gotSwitch != expected  {
-		t.Fatalf("expected %q, got %q.", expected, gotSwitch)
-	}
-	
-	if gotIf != expected  {
-		t.Fatalf("expected %q, got %q.", expected, gotIf)
-	}
-
-	gotIf = RenderIf("v3")
-	gotSwitch = RenderSwitch("v3")
-	expected = "other value"
-	if gotSwitch != expected  {
-		t.Fatalf("expected %q, got %q.", expected, gotSwitch)
-	}
-	
-	if gotIf != expected  {
-		t.Fatalf("expected %q, got %q.", expected, gotIf)
-	}
-}
-\`\`\`
-`;
+Check out the full example [here](https://github.com/gnolang/gno-by-example/tree/main/src/tutorials/gno.land/gbe/conditions).`;
 
 const title: string = "Conditions";
 
-const section: string = "Section 1";
+const section: string = "Getting Started";
 
 const tutorialData = {
   content: markdownContent,

@@ -1,6 +1,6 @@
 const markdownContent: string = `
 
-TBD
+Constants works as they do in standard Go:
 
 \`\`\`go
 package constants
@@ -10,33 +10,18 @@ import "fmt"
 const s = "constant string"
 
 func Render(name string) string {
-	// we cannot change the assignment on a constant, so this line will fail when compiling
-	// s = "other valie"
+	// we cannot change the assignment on a constant, 
+	// so this line will fail when compiling
+	// s = "other value"
 
 	return s
-}
-\`\`\`
-
-Test:
-
-\`\`\`go
-package constants
-
-import "testing"
-
-func TestConstants(t *testing.T) {
-	got := Render("")
-	expected := "constant string"
-	if got != expected {
-		t.Fatalf("expected %q, got %q.", expected, got)
-	}
 }
 \`\`\`
 `;
 
 const title: string = "Constants";
 
-const section: string = "Section 1";
+const section: string = "Getting Started";
 
 const tutorialData = {
   content: markdownContent,

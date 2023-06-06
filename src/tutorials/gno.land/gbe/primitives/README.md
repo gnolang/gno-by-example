@@ -1,6 +1,6 @@
 ---
 title: Primitives
-section: Section 1
+section: Getting Started
 ---
 
 Example using primitives.

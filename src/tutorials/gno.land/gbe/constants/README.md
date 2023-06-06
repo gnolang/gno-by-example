@@ -1,14 +1,9 @@
 ---
 title: Constants
-section: Section 1
+section: Getting Started
 ---
 
-TBD
+Constants works as they do in standard Go:
 
 ```go file=./constants.gno
-```
-
-Test:
-
-```go file=./constants_test.gno
 ```

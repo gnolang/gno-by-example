@@ -1,14 +1,9 @@
 ---
 title: Variables
-section: Section 1
+section: Getting Started
 ---
 
-TBD
+Global variables will keep the state between executions, but that is not the case for variables outside the global context, like inside functions:
 
 ```go file=./variables.gno
-```
-
-Tests:
-
-```go file=./variables_test.gno
 ```
