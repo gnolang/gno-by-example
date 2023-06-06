@@ -30,7 +30,7 @@ func TestHello(t *testing.T) {
 
 const title: string = "Hello World";
 
-const section: string = "Section 1";
+const section: string = "Getting Started";
 
 const tutorialData = {
   content: markdownContent,

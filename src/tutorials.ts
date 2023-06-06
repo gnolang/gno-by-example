@@ -1,7 +1,8 @@
 import conditions from "./tutorials/gno.land/gbe/conditions/index";
 import constants from "./tutorials/gno.land/gbe/constants/index";
-import counting from "./tutorials/gno.land/gbe/count/index";
+import firstApp from "./tutorials/gno.land/gbe/count/index";
 import helloWorld from "./tutorials/gno.land/gbe/hello/index";
+import loops from "./tutorials/gno.land/gbe/loops/index";
 import primitives from "./tutorials/gno.land/gbe/primitives/index";
 import variables from "./tutorials/gno.land/gbe/variables/index";
 
@@ -15,12 +16,16 @@ const tutorials = [
     data: constants,
   },
   {
-    link: "counting",
-    data: counting,
+    link: "first-app",
+    data: firstApp,
   },
   {
     link: "hello-world",
     data: helloWorld,
+  },
+  {
+    link: "loops",
+    data: loops,
   },
   {
     link: "primitives",

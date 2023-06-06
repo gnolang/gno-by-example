@@ -133,7 +133,7 @@ func TestPrimitives(t *testing.T) {
 
 const title: string = "Primitives";
 
-const section: string = "Section 1";
+const section: string = "Getting Started";
 
 const tutorialData = {
   content: markdownContent,

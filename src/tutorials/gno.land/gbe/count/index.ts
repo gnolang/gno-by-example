@@ -46,9 +46,9 @@ func TestCount(t *testing.T) {
 \`\`\`
 `;
 
-const title: string = "Counting";
+const title: string = "First App";
 
-const section: string = "Section 1";
+const section: string = "Getting Started";
 
 const tutorialData = {
   content: markdownContent,
