@@ -8,32 +8,38 @@ import variables from "./tutorials/gno.land/gbe/variables/index";
 
 const tutorials = [
   {
-    link: "conditions",
-    data: conditions,
-  },
-  {
-    link: "constants",
-    data: constants,
-  },
-  {
-    link: "first-app",
-    data: firstApp,
-  },
-  {
-    link: "hello-world",
-    data: helloWorld,
-  },
-  {
-    link: "loops",
-    data: loops,
-  },
-  {
-    link: "primitives",
-    data: primitives,
-  },
-  {
-    link: "variables",
-    data: variables,
+    section: "Getting Started",
+    link: "getting-started",
+    items: [
+      {
+        link: "conditions",
+        data: conditions,
+      },
+      {
+        link: "constants",
+        data: constants,
+      },
+      {
+        link: "first-app",
+        data: firstApp,
+      },
+      {
+        link: "hello-world",
+        data: helloWorld,
+      },
+      {
+        link: "loops",
+        data: loops,
+      },
+      {
+        link: "primitives",
+        data: primitives,
+      },
+      {
+        link: "variables",
+        data: variables,
+      },
+    ],
   },
 ];
 

@@ -9,7 +9,7 @@ const AppRouter = () => (
     <Routes>
       <Route path={'/'} element={<AppLayout />}>
         <Route index element={<Home />} />
-        <Route path={'tutorials/:tutorialID'} element={<Tutorial />} />
+        <Route path={'tutorials/:sectionID/:tutorialID'} element={<Tutorial />} />
       </Route>
       <Route path="*" element={<Navigate to={'/'} />} />
     </Routes>

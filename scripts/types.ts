@@ -11,4 +11,11 @@ export interface TutorialData {
 export interface TutorialItem {
   dataPath: string;
   link: string;
+  section: string;
+}
+
+export interface SectionData {
+  section: string;
+  link: string;
+  items: TutorialItem[];
 }

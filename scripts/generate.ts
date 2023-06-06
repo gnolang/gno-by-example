@@ -1,7 +1,7 @@
 import fs from 'fs';
 import yaml from 'yaml';
 import path from 'path';
-import { TutorialItem, TutorialMetadata } from './types';
+import { SectionData, TutorialItem, TutorialMetadata } from './types';
 import prettier from 'prettier';
 import { constructLink, generateImportFromLink } from './utility';
 
@@ -147,7 +147,8 @@ const parseTutorial = (directory: string): TutorialItem => {
     dataPath:
       './' +
       path.relative('./src', path.resolve(tsFilePath)).replace(/\.ts/g, ''),
-    link: constructLink(metadata.title)
+    link: constructLink(metadata.title),
+    section: metadata.section
   };
 };
 
@@ -162,17 +163,49 @@ const generateTutorialRoutes = (items: TutorialItem[], outputFile: string) => {
 
   output += '\n';
 
-  const arrayLiteral = items
-    .map(
-      (item: TutorialItem) => `{
-        link: "${item.link}",
-        data: ${generateImportFromLink(item.link)},
-      }`
-    )
+  // Sort the tutorials into section buckets
+  const sectionsMap: { [section: string]: SectionData } = {};
+
+  for (const tutorial of items) {
+    const { section } = tutorial;
+
+    if (!sectionsMap[section]) {
+      sectionsMap[section] = {
+        section,
+        link: constructLink(section),
+        items: []
+      };
+    }
+
+    sectionsMap[section].items.push(tutorial);
+  }
+
+  const sections: SectionData[] = Object.values(sectionsMap);
+
+  // Parse the sections to generate a routes object
+  const sectionsArrayLiteral = sections
+    .map((sectionData: SectionData) => {
+      const itemsLiteral = sectionData.items
+        .map(
+          (item: TutorialItem) => `{
+            link: "${item.link}",
+            data: ${generateImportFromLink(item.link)},
+          }`
+        )
+        .join(',\n');
+
+      return `{
+        section: "${sectionData.section}",
+        link: "${sectionData.link}",
+        items: [
+          ${itemsLiteral}
+        ],
+      }`;
+    })
     .join(',\n');
 
   output += `const tutorials = [
-    ${arrayLiteral}
+    ${sectionsArrayLiteral}
   ];\n\n`;
 
   output += 'export default tutorials;\n';
