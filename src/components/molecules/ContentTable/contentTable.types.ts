@@ -1,8 +1,11 @@
+import { ITutorialSection } from '../../pages/Home/home.types';
+
 export interface IContentTableProps {
-  sections: ISectionBundle[];
+  sections: ISectionInfo[];
+
+  activeSection: string;
+  setActiveSection: (section: string) => void;
 }
 
-export interface ISectionBundle {
-  id: string;
-  title: string;
-}
+export interface ISectionInfo
+  extends Pick<ITutorialSection, 'section' | 'link'> {}

@@ -1,12 +1,16 @@
-import React, { FC, useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef } from 'react';
 import { Box, Stack, Text, useColorMode, useTheme } from '@chakra-ui/react';
 import { IContentTableProps } from './contentTable.types';
 import { useLocation } from 'react-router-dom';
 import styles from './contentTable.module.css';
-import ContentTableItem from '../../atoms/ContentTableItem/ContentTableItem';
+import ActiveSectionTitle from '../../atoms/ContentTableItem/ActiveSectionTitle';
+import InactiveSectionTitle from '../../atoms/ContentTableItem/InactiveSectionTitle';
 
-const ContentTable: FC<IContentTableProps> = ({ sections }) => {
-  const [activeSection, setActiveSection] = useState<string>('');
+const ContentTable: FC<IContentTableProps> = ({
+  sections,
+  activeSection,
+  setActiveSection
+}) => {
   const scrollRef = useRef<HTMLElement | null>(null);
   const { colorMode } = useColorMode();
   const theme = useTheme();
@@ -14,12 +18,6 @@ const ContentTable: FC<IContentTableProps> = ({ sections }) => {
 
   const wrapperColor =
     colorMode === 'dark' ? theme.colors.gno.dark : theme.colors.gno.light;
-
-  useEffect(() => {
-    if (sections.length > 0) {
-      setActiveSection(sections[0].title);
-    }
-  }, [sections]);
 
   useEffect(() => {
     if (hash === '') {
@@ -41,7 +39,7 @@ const ContentTable: FC<IContentTableProps> = ({ sections }) => {
     if (scrollRef.current) {
       scrollRef.current.scrollIntoView({ behavior: 'smooth' });
     }
-  }, [scrollRef.current]);
+  }, []);
 
   return (
     <Box
@@ -63,11 +61,18 @@ const ContentTable: FC<IContentTableProps> = ({ sections }) => {
               display={'flex'}
               alignItems={'center'}
             >
-              <ContentTableItem
-                section={section}
-                activeSection={activeSection}
-                setActiveSection={setActiveSection}
-              />
+              {section.link === activeSection && (
+                <ActiveSectionTitle
+                  sectionInfo={section}
+                  handleToggle={setActiveSection}
+                />
+              )}
+              {section.link !== activeSection && (
+                <InactiveSectionTitle
+                  sectionInfo={section}
+                  handleToggle={setActiveSection}
+                />
+              )}
             </Box>
           );
         })}

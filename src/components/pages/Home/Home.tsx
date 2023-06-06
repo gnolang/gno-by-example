@@ -17,102 +17,79 @@ import { BsSearch } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
 import clsx from 'clsx';
 import tutorials from '../../../tutorials';
+import { Waypoint } from 'react-waypoint';
 
 const Home: FC<IHomeProps> = () => {
   const { colorMode } = useColorMode();
   const theme = useTheme();
   const isLight = colorMode === 'light';
 
-  const [tutorialSections, setTutorialSections] = useState<ITutorialSection[]>(
-    []
-  );
   const [displayedSections, setDisplayedSections] =
-    useState<ITutorialSection[]>(tutorialSections);
+    useState<ITutorialSection[]>(tutorials);
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const [activeSection, setActiveSection] = useState<string>(
+    tutorials.length > 0 ? tutorials[0].link : ''
+  );
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchQuery(event.target.value);
   };
 
-  const createID = (input: string) => {
-    return input.trim().toLowerCase().replace(/\s+/g, '-');
-  };
-
-  useEffect(() => {
-    if (tutorials.length < 1) {
-      return;
-    }
-
-    const sectionsMap: { [section: string]: ITutorialSection } = {};
-
-    for (const tutorial of tutorials) {
-      const { data, link } = tutorial;
-      const section = data.metadata.section;
-
-      if (!sectionsMap[section]) {
-        sectionsMap[section] = {
-          section,
-          items: []
-        };
-      }
-
-      const title = data.metadata.title;
-      sectionsMap[section].items.push({ title, link });
-    }
-
-    const sections = Object.values(sectionsMap);
-
-    setTutorialSections(sections);
-    setDisplayedSections(sections);
-  }, []);
-
   useEffect(() => {
     if (!searchQuery) {
-      setDisplayedSections(tutorialSections);
+      setDisplayedSections(tutorials);
+
       return;
     }
 
-    const filtered = tutorialSections
-      .map((value) => {
-        const items = value.items.filter((item) =>
-          item.title.includes(searchQuery)
+    const filtered: ITutorialSection[] = tutorials
+      .map((section: ITutorialSection) => {
+        const tutorials = section.items.filter((tutorial) =>
+          tutorial.data.metadata.title.includes(searchQuery)
         );
-        if (items.length > 0) {
+
+        if (tutorials.length > 0) {
           return {
-            section: value.section,
-            items
+            section: section.section,
+            link: section.link,
+            items: tutorials
           };
         }
+
         return null;
       })
       .filter(Boolean) as ITutorialSection[];
 
     setDisplayedSections(filtered);
-  }, [searchQuery, tutorialSections]);
+  }, [searchQuery]);
 
-  const [isLgOrLarger] = useMediaQuery('(min-width: 62em)');
+  const [isMdOrSmaller] = useMediaQuery('(max-width: 62em)');
 
   return (
     <Box display={'flex'}>
-      {isLgOrLarger && (
+      {!isMdOrSmaller && (
         <ContentTable
-          sections={displayedSections.map((article) => {
-            return {
-              title: article.section,
-              id: `section-${createID(article.section)}`
-            };
-          })}
+          sections={displayedSections}
+          activeSection={activeSection}
+          setActiveSection={setActiveSection}
         />
       )}
-      <Box ml={{
-        base: 0,
-        lg: 20
-      }} display={'flex'} flexDirection={'column'}>
+      <Box
+        ml={{
+          base: 0,
+          lg: 20
+        }}
+        display={'flex'}
+        flexDirection={'column'}
+      >
         <Title text={'Gno.land by Example'} size={'4xl'} />
-        <Box width={{
-          base: '100%',
-          lg: '400px'
-        }} mt={6}>
+        <Box
+          width={{
+            base: '100%',
+            lg: '400px'
+          }}
+          mt={6}
+        >
           <InputGroup>
             <InputLeftElement pointerEvents="none">
               <BsSearch color={theme.colors.gno.grayscale2} />
@@ -140,7 +117,7 @@ const Home: FC<IHomeProps> = () => {
         </Box>
         <Stack mt={6} direction={'column'} spacing={'20px'}>
           {displayedSections.length === 0 && <Text>No search results</Text>}
-          {displayedSections.map((article, index) => {
+          {displayedSections.map((section, index) => {
             return (
               <Box
                 key={`article-${index}`}
@@ -148,26 +125,47 @@ const Home: FC<IHomeProps> = () => {
                 flexDirection={'column'}
                 alignSelf={'flex-start'}
               >
-                <Box mb={4} id={`section-${createID(article.section)}`}>
-                  <Title text={article.section} />
+                <Waypoint
+                  onLeave={({ previousPosition, currentPosition, event }) => {
+                    if (
+                      previousPosition === 'inside' &&
+                      currentPosition === 'above'
+                    ) {
+                      setActiveSection(section.link);
+                    }
+                  }}
+                />
+                <Box mb={4} id={section.link}>
+                  <Title text={section.section} />
                 </Box>
-
                 <Stack
                   direction={'column'}
                   spacing={'10px'}
                   alignSelf={'flex-start'}
                 >
-                  {article.items.map((item, index) => {
+                  {section.items.map((item, index) => {
                     return (
                       <Link
-                        key={`article-${article.section}-${index}`}
-                        to={`/tutorials/${item.link}`}
+                        key={`article-${section.section}-${index}`}
+                        to={`/tutorials/${section.link}/${item.link}`}
                       >
-                        <Text textDecoration={'underline'}>{item.title}</Text>
+                        <Text textDecoration={'underline'}>
+                          {item.data.metadata.title}
+                        </Text>
                       </Link>
                     );
                   })}
                 </Stack>
+                <Waypoint
+                  onEnter={({ previousPosition, currentPosition, event }) => {
+                    if (
+                      previousPosition === 'above' &&
+                      currentPosition === 'inside'
+                    ) {
+                      setActiveSection(section.link);
+                    }
+                  }}
+                />
               </Box>
             );
           })}

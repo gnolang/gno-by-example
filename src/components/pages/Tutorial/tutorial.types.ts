@@ -5,11 +5,6 @@ import MarkdownCode from '../../atoms/Markdown/MarkdownCode';
 
 export interface ITutorialProps {}
 
-export interface ITutorialLink {
-  title: string;
-  link: string;
-}
-
 export interface ITutorialLinks {
   prev?: IItemInfo;
   next?: IItemInfo;
