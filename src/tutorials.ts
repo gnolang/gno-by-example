@@ -1,10 +1,10 @@
-import conditions from "./tutorials/gno.land/gbe/conditions/index";
-import constants from "./tutorials/gno.land/gbe/constants/index";
-import firstApp from "./tutorials/gno.land/gbe/count/index";
-import helloWorld from "./tutorials/gno.land/gbe/hello/index";
-import loops from "./tutorials/gno.land/gbe/loops/index";
-import primitives from "./tutorials/gno.land/gbe/primitives/index";
-import variables from "./tutorials/gno.land/gbe/variables/index";
+import helloWorld from "./tutorials/gno.land/gbe/01-hello/index";
+import firstApp from "./tutorials/gno.land/gbe/02-count/index";
+import primitives from "./tutorials/gno.land/gbe/03-primitives/index";
+import variables from "./tutorials/gno.land/gbe/04-variables/index";
+import constants from "./tutorials/gno.land/gbe/05-constants/index";
+import conditions from "./tutorials/gno.land/gbe/06-conditions/index";
+import loops from "./tutorials/gno.land/gbe/07-loops/index";
 
 const tutorials = [
   {
@@ -12,24 +12,12 @@ const tutorials = [
     link: "getting-started",
     items: [
       {
-        link: "conditions",
-        data: conditions,
-      },
-      {
-        link: "constants",
-        data: constants,
-      },
-      {
-        link: "first-app",
-        data: firstApp,
-      },
-      {
         link: "hello-world",
         data: helloWorld,
       },
       {
-        link: "loops",
-        data: loops,
+        link: "first-app",
+        data: firstApp,
       },
       {
         link: "primitives",
@@ -38,6 +26,18 @@ const tutorials = [
       {
         link: "variables",
         data: variables,
+      },
+      {
+        link: "constants",
+        data: constants,
+      },
+      {
+        link: "conditions",
+        data: conditions,
+      },
+      {
+        link: "loops",
+        data: loops,
       },
     ],
   },
