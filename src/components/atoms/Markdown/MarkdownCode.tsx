@@ -91,6 +91,10 @@ const MarkdownCode: FC<MarkdownComponentProps> = ({ children, ...props }) => {
       <SyntaxHighlighter
         language={language}
         style={isLight ? stackoverflowLight : stackoverflowDark}
+        showLineNumbers
+        lineNumberStyle={{
+          color: theme.colors.gno.grayscale2b
+        }}
         customStyle={{
           background: 'none'
         }}
