@@ -12,6 +12,7 @@
 
 # production
 /build
+/gnobuild
 
 # misc
 .env.local

@@ -3,14 +3,14 @@ EXAMPLES_DIR = src/tutorials/*/*/*
 all: clean clone bin test
 
 clone:
-	cd build && git clone https://github.com/gnolang/gno.git
+	cd gnobuild && git clone https://github.com/gnolang/gno.git
 bin:
-	cd build/gno/gnovm && make build
+	cd gnobuild/gno/gnovm && make build
 
 test: $(EXAMPLES_DIR)
 	@echo "++++ Executing tests for $^"
-	./build/gno/gnovm/build/gno test --verbose --root-dir ./build/gno ./$^
+	./gnobuild/gno/gnovm/build/gno test --verbose --root-dir ./gnobuild/gno ./$^
 
 clean:
-	rm -rf build
-	mkdir build
+	rm -rf gnobuild
+	mkdir gnobuild
