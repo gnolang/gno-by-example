@@ -8,7 +8,7 @@ used on [Gno.land](https://gno.land).
 
 ## Contributing
 
-The base application is built with `React` and utilizes the `Chakra UI` framework.
+The base application is built with `React` and utilizes the `Chakra UI` framework. You need nodejs <= v20 to execute it.
 
 Since the project is community-run, users can contribute new tutorials or modify existing ones.
 
@@ -34,6 +34,20 @@ dynamic display. Make sure to run this command from the repository root.
 ### Markdown format
 
 Tutorials can be written using Markdown syntax.
+
+#### Metadata header
+
+A markdown header with some specific metadata is mandatory. That makes possible to the generator script to correctly parse and organize examples. 
+`title` and `section` values have to be set as fromatter metadata at the top of the markdown file:
+
+```md
+---
+title: Example Title
+section: Example Section
+---
+```
+
+#### Code snippets 
 
 In Gno By Example, there is a special feature that allows referencing entire external files or specific line numbers
 from those files, outside of the Markdown files themselves.
