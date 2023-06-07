@@ -2,6 +2,7 @@ import { IItemInfo } from '../../atoms/TutorialFooter/tutorialFooter.types';
 import MarkdownHeader from '../../atoms/Markdown/MarkdownHeader';
 import MarkdownParagraph from '../../atoms/Markdown/MarkdownParagraph';
 import MarkdownCode from '../../atoms/Markdown/MarkdownCode';
+import MarkdownLink from '../../atoms/Markdown/MarkdownLink';
 
 export interface ITutorialProps {}
 
@@ -37,5 +38,8 @@ export const markdownComponentOverrides = {
   },
   code: {
     component: MarkdownCode
+  },
+  a: {
+    component: MarkdownLink
   }
 };
