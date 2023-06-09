@@ -5,6 +5,7 @@ import {
   Container,
   Divider,
   useColorMode,
+  useMediaQuery,
   useTheme
 } from '@chakra-ui/react';
 import { Outlet } from 'react-router-dom';
@@ -12,6 +13,8 @@ import Footer from '../../molecules/Footer/Footer';
 import Header from '../../molecules/Header/Header';
 
 const AppLayout: FC<IAppLayoutProps> = (props) => {
+  const [isMdOrSmaller] = useMediaQuery('(max-width: 62em)');
+
   const { colorMode } = useColorMode();
   const theme = useTheme();
 
@@ -28,7 +31,7 @@ const AppLayout: FC<IAppLayoutProps> = (props) => {
       minHeight={'100vh'}
     >
       <Header />
-      <Container maxW={'80vw'} my={20}>
+      <Container maxW={isMdOrSmaller ? '100vw' : '80vw'} my={20}>
         <Outlet />
       </Container>
       <Divider borderColor={dividerColor} mt={'auto'} />

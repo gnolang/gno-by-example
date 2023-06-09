@@ -15,26 +15,30 @@ const TutorialFooter: FC<ITutorialFooterProps> = ({ prev, next }) => {
         width="100%"
       >
         {prev && (
-          <Link to={prev.link}>
-            <Button
-              leftIcon={<HiChevronDoubleLeft />}
-              variant="outline"
-              padding={6}
-            >
-              {prev.name}
-            </Button>
-          </Link>
+          <Box mr={next ? 0 : 'auto'}>
+            <Link to={prev.link}>
+              <Button
+                leftIcon={<HiChevronDoubleLeft />}
+                variant="outline"
+                padding={6}
+              >
+                {prev.name}
+              </Button>
+            </Link>
+          </Box>
         )}
         {next && (
-          <Link to={next.link}>
-            <Button
-              rightIcon={<HiChevronDoubleRight />}
-              variant="outline"
-              padding={6}
-            >
-              {next.name}
-            </Button>
-          </Link>
+          <Box ml={prev ? 0 : 'auto'}>
+            <Link to={next.link}>
+              <Button
+                rightIcon={<HiChevronDoubleRight />}
+                variant="outline"
+                padding={6}
+              >
+                {next.name}
+              </Button>
+            </Link>
+          </Box>
         )}
       </Box>
     </Box>

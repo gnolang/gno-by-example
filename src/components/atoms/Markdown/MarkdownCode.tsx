@@ -4,7 +4,7 @@ import {
   Box,
   Button,
   Tooltip,
-  useColorMode,
+  useColorMode, useMediaQuery,
   useTheme,
   useToast
 } from '@chakra-ui/react';
@@ -16,6 +16,8 @@ import {
 } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 
 const MarkdownCode: FC<MarkdownComponentProps> = ({ children, ...props }) => {
+  const [isMdOrSmaller] = useMediaQuery('(max-width: 62em)');
+
   const toast = useToast();
   const id = 'copy-toast';
 
@@ -64,11 +66,12 @@ const MarkdownCode: FC<MarkdownComponentProps> = ({ children, ...props }) => {
   // Get the code block language for the highlighter
   const language = props.className.replace('lang-', '');
 
+
   return (
     <Box
       display={'flex'}
       width={'100%'}
-      padding={'30px'}
+      padding={isMdOrSmaller?'10px':'30px'}
       backgroundColor={codeWrapper}
       borderRadius={'10px'}
       my={6}

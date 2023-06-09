@@ -1,10 +1,18 @@
 import IFooterProps from './footer.types';
 import React, { FC } from 'react';
-import { Box, Container, Link, Text, useTheme } from '@chakra-ui/react';
+import {
+  Box,
+  Container,
+  Link,
+  Text,
+  useMediaQuery,
+  useTheme
+} from '@chakra-ui/react';
 import { BsDiscord, BsGithub, BsTelegram, BsTwitter } from 'react-icons/bs';
 import Logo from '../../atoms/Logo/Logo';
 
 const Footer: FC<IFooterProps> = () => {
+  const [isMdOrSmaller] = useMediaQuery('(max-width: 62em)');
   const theme = useTheme();
 
   const iconColor: string = theme.colors.gno.grayscale2b;
@@ -30,7 +38,7 @@ const Footer: FC<IFooterProps> = () => {
   ];
 
   return (
-    <Container maxW={'80vw'} my={10}>
+    <Container maxW={isMdOrSmaller ? '100vw' : '80vw'} my={10}>
       <Box
         display={'flex'}
         justifyContent={{
