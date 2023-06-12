@@ -1,5 +1,7 @@
 <h2 align="center">⚛️ Gno By Example ⚛️</h2>
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/a9985f13-8c4c-48e5-96cf-79fa79c067ad/deploy-status)](https://app.netlify.com/sites/gno-by-example/deploys)
+
 ## Overview
 
 `Gno By Example` is a community-dedicated web app that showcases the fundamentals of Gnolang, the Smart Contract
