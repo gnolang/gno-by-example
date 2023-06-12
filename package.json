@@ -35,9 +35,7 @@
     "build": "npm run generate && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate": "npx ts-node ./scripts/generate.ts",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "generate": "npx ts-node ./scripts/generate.ts"
   },
   "eslintConfig": {
     "extends": [
@@ -58,7 +56,6 @@
     ]
   },
   "devDependencies": {
-    "gh-pages": "^5.0.0",
     "ts-node": "^10.9.1"
   }
 }
