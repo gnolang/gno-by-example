@@ -1,6 +1,7 @@
 {
   "name": "gno-by-example",
   "version": "0.1.0",
+  "homepage": "https://www.gno-by-example.com/",
   "private": true,
   "dependencies": {
     "@chakra-ui/react": "^2.6.1",
@@ -31,10 +32,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "yarn generate && react-scripts build",
+    "build": "npm run generate && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "generate": "npx ts-node ./scripts/generate.ts"
+    "generate": "npx ts-node ./scripts/generate.ts",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -55,6 +58,7 @@
     ]
   },
   "devDependencies": {
+    "gh-pages": "^5.0.0",
     "ts-node": "^10.9.1"
   }
 }
