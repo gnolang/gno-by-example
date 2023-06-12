@@ -4,7 +4,7 @@
   "homepage": "https://www.gno-by-example.com/",
   "private": true,
   "dependencies": {
-    "@chakra-ui/react": "^2.6.1",
+    "@chakra-ui/react": "^2.7.0",
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@testing-library/jest-dom": "^5.14.1",
