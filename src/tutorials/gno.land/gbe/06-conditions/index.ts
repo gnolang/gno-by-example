@@ -31,7 +31,7 @@ func RenderSwitch(v string) (out string) {
 	return
 }
 \`\`\`
-Check out the full example [here](https://github.com/gnolang/gno-by-example/tree/main/src/tutorials/gno.land/gbe/conditions).`;
+Check out the full example [here](https://github.com/gnolang/gno-by-example/tree/main/src/tutorials/gno.land/gbe/06-conditions).`;
 
 const title: string = "Conditions";
 
