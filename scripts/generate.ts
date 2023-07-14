@@ -70,17 +70,18 @@ const parseTutorial = (directory: string): TutorialItem => {
       continue;
     }
 
+    let filePathDependsOn = [];
+    const filePathDependsOnMatch = codeRef.match(/depends_on_file=([^#\s]+)/);
+    if (filePathDependsOnMatch) {
+      filePathDependsOn = filePathDependsOnMatch[1].split(",")
+    }
+
     const filePath = filePathMatch[1];
     const codeFilePath = path.join(directory, filePath);
-    const codeContent = fs.readFileSync(codeFilePath, 'utf-8');
+    let codeContent = fs.readFileSync(codeFilePath, 'utf-8');
 
-    // Find the code segment language
-    const languageMatch = codeRef.match(/```(\w+)/);
-    const language = languageMatch ? languageMatch[1] : 'go';
-
-    let embeddedCodeBlock = '';
-
-    // Check if there are any specific code segments that need embedding
+    
+      // Check if there are any specific code segments that need embedding
     if (/#L\d+-L\d+/.test(codeRef)) {
       const [startLine, endLine] =
         codeRef
@@ -101,21 +102,25 @@ const parseTutorial = (directory: string): TutorialItem => {
         continue;
       }
 
-      embeddedCodeBlock =
-        '```' +
-        language +
-        '\n' +
-        lines.slice(startLine - 1, endLine).join('\n') +
-        '\n```';
-    } else {
-      embeddedCodeBlock = '```' + language + '\n' + codeContent + '\n```';
-    }
+      codeContent =  lines.slice(startLine - 1, endLine).join('\n')
+    } 
+
+    let files = [];
+
+    files.push({ path: codeFilePath, content: codeContent })
+
+    filePathDependsOn.forEach(function(filePath) {
+      const codeFilePath = path.join(directory, filePath);
+      const codeContent = fs.readFileSync(codeFilePath, 'utf-8');
+      files.push({ path: codeFilePath, content: codeContent })
+    })
+
+    const filesEncoded = encodeURIComponent(JSON.stringify(files)) 
+
+    const embeddedCodeBlock = `<Playground open="${codeFilePath}" files="${filesEncoded}">`;
 
     mdContent = mdContent.replace(codeRef, embeddedCodeBlock);
   }
-
-  // Make sure to escape the code block backticks
-  mdContent = mdContent.replace(/```(?!.*```)/g, '\\`\\`\\`');
 
   // Make sure to escape all other backticks
   mdContent = mdContent.replace(/([^\\])`/g, '$1\\`');

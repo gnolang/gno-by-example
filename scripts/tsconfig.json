@@ -1,10 +1,12 @@
 {
+  "ts-node": {
+    "esm": true,
+    "experimentalSpecifierResolution": "node"
+  },
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "lib": [
-      "ES2015"
-    ],
+    "esModuleInterop": true,
+    "module": "ESNext", 
+    "moduleResolution": "Node",
     "esModuleInterop": true,
     "skipLibCheck": true
   }

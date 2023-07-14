@@ -13,5 +13,5 @@ and `Remove()` methods. The state will be saved between executions.
 
 Tests:
 
-```go file=./count_test.gno
+```go file=./count_test.gno depends_on_file=./count.gno
 ```

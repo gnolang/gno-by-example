@@ -1,8 +1,9 @@
 import { IItemInfo } from '../../atoms/TutorialFooter/tutorialFooter.types';
 import MarkdownHeader from '../../atoms/Markdown/MarkdownHeader';
 import MarkdownParagraph from '../../atoms/Markdown/MarkdownParagraph';
-import MarkdownCode from '../../atoms/Markdown/MarkdownCode';
 import MarkdownLink from '../../atoms/Markdown/MarkdownLink';
+import MarkdownCode from '../../atoms/Markdown/MarkdownCode';
+import Playground from '../../atoms/Playground';
 
 export interface ITutorialProps {}
 
@@ -37,9 +38,12 @@ export const markdownComponentOverrides = {
     component: MarkdownParagraph
   },
   code: {
-    component: MarkdownCode
+    component: MarkdownCode, 
   },
   a: {
     component: MarkdownLink
-  }
+  },
+  Playground: {
+    component:  Playground,
+  },
 };
