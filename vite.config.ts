@@ -8,7 +8,7 @@ export default defineConfig({
     react(),
   ],
   build: {
-    outDir: './build'
+    outDir: './build',
   },
   resolve: {
     alias: { 
