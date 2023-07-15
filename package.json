@@ -8,7 +8,7 @@
     "@chakra-ui/react": "^2.7.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@gnoide/playground": "*",
+    "@gnoide/playground": "0.0.3",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
@@ -35,10 +35,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "start": "react-scripts start",
-    "build": "npm run generate && react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "build": "vite build",
     "generate": "npx ts-node ./scripts/generate.ts"
   },
   "eslintConfig": {

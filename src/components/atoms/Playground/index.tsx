@@ -1,5 +1,6 @@
-import { Playground, type Monaco } from '@gnoide/playground'
-import React, { FC } from 'react';
+import { Playground } from '@gnoide/playground'
+import '~/@gnoide/playground/dist/style.css'
+import React from 'react';
 import {
   useColorMode,
 } from '@chakra-ui/react';
