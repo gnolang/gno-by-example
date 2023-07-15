@@ -2367,10 +2367,10 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.44.0.tgz#961a5903c74139390478bdc808bcde3fc45ab7af"
   integrity sha512-Ag+9YM4ocKQx9AarydN0KY2j0ErMHNIocPDrVo8zAE44xLTjEtz81OdR68/cydGtk6m6jDb5Za3r2useMzYmSw==
 
-"@gnoide/playground@0.0.3":
-  version "0.0.3"
-  resolved "https://registry.yarnpkg.com/@gnoide/playground/-/playground-0.0.3.tgz#d317b826f649b7dd658c26495de287d56cc51de0"
-  integrity sha512-aKjTGoStGBu10txZ6kMd1bXVgLLE8uv/S4fwLuuSFLqz6V66bC7LdPwWsSfBtr9xMxgRCAZIOc1xwDspLNTn0w==
+"@gnoide/playground@0.0.4":
+  version "0.0.4"
+  resolved "https://registry.yarnpkg.com/@gnoide/playground/-/playground-0.0.4.tgz#28d945451297f875ddd78211692018b3ff7c9623"
+  integrity sha512-Jzh22nP+At1IlBFGzuSZ8Y1dlsiFS3VX7nS0+lS6saIJLBE2hCtfdb0xTKqcp47VN6zSsIJyG8Abcf7SO5NVDQ==
   dependencies:
     "@chakra-ui/icons" "^2.0.19"
     "@chakra-ui/react" "^2.7.1"
@@ -2391,6 +2391,11 @@
     vite-plugin-svgr "^3.2.0"
     xterm "^5.2.1"
     xterm-addon-fit "^0.7.0"
+
+"@gnoide/tools@^0.4.0":
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/@gnoide/tools/-/tools-0.4.0.tgz#f5d779f57259faa8c4a5e4ef2b4dfd44454382fb"
+  integrity sha512-z1VaU1zPxBN4mqyg5akClK93+L822jZorO6SMaoT/Pe8nv914ajFoEYryj3AaVwSgFjPK9Iq+pkI7zMXf/dpkw==
 
 "@humanwhocodes/config-array@^0.11.10":
   version "0.11.10"
