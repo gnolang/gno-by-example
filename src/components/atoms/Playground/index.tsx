@@ -1,36 +1,34 @@
 import { Playground } from '@gnoide/playground'
 import '~/@gnoide/playground/dist/style.css'
-import React from 'react';
 import {
   useColorMode,
+  useTheme,
 } from '@chakra-ui/react';
 
 const App = ({ ...props }) => {
-  const files = JSON.parse(decodeURIComponent(props.files)) 
-
   const { colorMode } = useColorMode();
+  const { colors }= useTheme();
+
   const isLight = colorMode === 'light';
-
-  let theme = {
-    color: "#a8a8a8",
-    primaryColor: '#3a3a3a',
-    secondaryColor: '#1c1c1c',
-    editorBase: 'vs-dark',
-  } 
-
-  if (isLight) {
-    theme = {
-      color: "#606060",
-      primaryColor: '#f1f1f1',
-      secondaryColor: '#bebebe',
-      editorBase: 'vs',
-    } 
-  }
+  const files = JSON.parse(decodeURIComponent(props.files));
 
   return (
     <Playground
+      open={props.open}
       files={files}
-      theme={theme}
+      theme={
+        isLight ? {
+          color: colors.gno.grayscale2b,
+          primaryColor: colors.gno.grayscale1,
+          secondaryColor: '#bebebe',
+          editorBase: 'vs',
+        } : {
+          color: colors.gno.grayscale2,
+          primaryColor: colors.gno.grayscale3,
+          secondaryColor: colors.gno.dark,
+          editorBase: 'vs-dark',
+        }
+      }
       autoHeight={true}
       style={{ margin: '30px 0', borderRadius: "15px" }}
     />
