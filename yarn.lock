@@ -2360,10 +2360,10 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.44.0.tgz#961a5903c74139390478bdc808bcde3fc45ab7af"
   integrity sha512-Ag+9YM4ocKQx9AarydN0KY2j0ErMHNIocPDrVo8zAE44xLTjEtz81OdR68/cydGtk6m6jDb5Za3r2useMzYmSw==
 
-"@gnoide/playground@0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@gnoide/playground/-/playground-0.0.4.tgz#28d945451297f875ddd78211692018b3ff7c9623"
-  integrity sha512-Jzh22nP+At1IlBFGzuSZ8Y1dlsiFS3VX7nS0+lS6saIJLBE2hCtfdb0xTKqcp47VN6zSsIJyG8Abcf7SO5NVDQ==
+"@gnoide/playground@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@gnoide/playground/-/playground-0.0.5.tgz#58d0c9a19984c8c9686775c9a6eb842b2f8d45a3"
+  integrity sha512-dwMP4ZQTqw2R5+TcySVEH1pp/xTY6mf06b83ZZaXzUiFZUedjh/8EAEpmzCIAkagBZwYLP+1OcIlTwc53i5lHA==
   dependencies:
     "@chakra-ui/icons" "^2.0.19"
     "@chakra-ui/react" "^2.7.1"
