@@ -77,6 +77,6 @@ A typical scenario occurs when your sample code is a test file. In order for you
 To define dependencies, use the following syntax: 
 
 ````md
-```go file=./myFile_test.gno depends_on_file=./myFile.gno,./myOtherFile_gno
+```go file=./myFile_test.gno depends_on_file=./myFile.gno,./myOtherFile.gno
 ```
 ````
