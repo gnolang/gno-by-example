@@ -71,3 +71,12 @@ To embed specific line numbers from an external file inside a code segment, use 
 ````
 
 The above syntax will embed the content of the first two lines (inclusive) from the `./myFile.gno` file.
+
+If your sample code relies on another code, you can define the dependencies. Each dependency code will be shown in a separate tab.
+A typical scenario occurs when your sample code is a test file. In order for your test file to be executable, you need to include the actual implementation as a dependency.
+To define dependencies, use the following syntax: 
+
+````md
+```go file=./myFile_test.gno depends_on_file=./myFile.gno,./myOtherFile.gno
+```
+````

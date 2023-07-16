@@ -11,5 +11,5 @@ Take into account that special types that are not in Go language will be impleme
 
 We can test these primitives:
 
-```go file=./primitives_test.gno
+```go file=./primitives_test.gno depends_on_file=./primitives.gno
 ```

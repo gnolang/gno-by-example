@@ -11,5 +11,5 @@ used by `gnoweb` to render markdown output.
 
 We can test the `Render` method:
 
-```go file=./hello_test.gno
+```go file=./hello_test.gno depends_on_file=./hello.gno
 ```

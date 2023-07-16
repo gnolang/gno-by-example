@@ -3,10 +3,12 @@
   "version": "0.1.0",
   "homepage": "https://www.gno-by-example.com/",
   "private": true,
+  "type": "module",
   "dependencies": {
     "@chakra-ui/react": "^2.7.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@gnoide/playground": "0.0.5",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",
@@ -31,10 +33,8 @@
     "yaml": "^2.3.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "npm run generate && react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "dev": "vite",
+    "build": "vite build",
     "generate": "npx ts-node ./scripts/generate.ts"
   },
   "eslintConfig": {
@@ -56,6 +56,7 @@
     ]
   },
   "devDependencies": {
-    "ts-node": "^10.9.1"
+    "@vitejs/plugin-react": "^4.0.3",
+    "vite": "^4.4.2"
   }
 }
