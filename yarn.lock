@@ -2353,10 +2353,10 @@
   resolved "https://registry.yarnpkg.com/@eslint/js/-/js-8.44.0.tgz#961a5903c74139390478bdc808bcde3fc45ab7af"
   integrity sha512-Ag+9YM4ocKQx9AarydN0KY2j0ErMHNIocPDrVo8zAE44xLTjEtz81OdR68/cydGtk6m6jDb5Za3r2useMzYmSw==
 
-"@gnoide/playground@0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@gnoide/playground/-/playground-0.0.7.tgz#968e9180bc969fee9e38288f6829f20c04c807b9"
-  integrity sha512-Ef9thrGcEoedZEn7b4keH9CC73Sw8JBXPO+2kHvK6xSUq+JA5PvpLouYy+nfRXpthmFflra1rK3msSLWJz2VqA==
+"@gnoide/playground@0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@gnoide/playground/-/playground-0.0.8.tgz#94ad72ce389860f798f2762196cfd69f6ee4f13a"
+  integrity sha512-i47ivWmjWTGXqnInEK9+8LHPIrRayoo0P2CYbNw+h+ns8cFnVTVRDEuiV6ncf8GBosOowLGaNk5TyiQ1Ro+TVQ==
   dependencies:
     "@react-hookz/web" "^23.1.0"
     browserfs "^1.4.3"
