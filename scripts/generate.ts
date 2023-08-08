@@ -80,7 +80,7 @@ const parseTutorial = (directory: string): TutorialItem => {
     const codeFilePath = path.join(directory, filePath);
     let codeContent = fs.readFileSync(codeFilePath, 'utf-8');
 
-    
+
       // Check if there are any specific code segments that need embedding
     if (/#L\d+-L\d+/.test(codeRef)) {
       const [startLine, endLine] =
@@ -103,7 +103,7 @@ const parseTutorial = (directory: string): TutorialItem => {
       }
 
       codeContent =  lines.slice(startLine - 1, endLine).join('\n')
-    } 
+    }
 
     let files = [];
 
@@ -115,18 +115,21 @@ const parseTutorial = (directory: string): TutorialItem => {
       files.push({ path: codeFilePath, content: codeContent })
     })
 
-    const filesEncoded = encodeURIComponent(JSON.stringify(files)) 
+    const filesEncoded = encodeURIComponent(JSON.stringify(files))
 
     const embeddedCodeBlock = `<Playground open="${codeFilePath}" files="${filesEncoded}">`;
 
     mdContent = mdContent.replace(codeRef, embeddedCodeBlock);
   }
 
-  // Make sure to escape all other backticks
-  mdContent = mdContent.replace(/([^\\])`/g, '$1\\`');
+  mdContent = mdContent.
+	  // Escape backslashes
+	  replace(/\\/g, '\\\\').
+	  // Escape all other backticks
+	  replace(/([^\\])`/g, '$1\\`').
+	  // Drop the metadata section
+	  replace(/---[\s\S]*?---/, '');
 
-  // Make sure to drop the metadata section
-  mdContent = mdContent.replace(/---[\s\S]*?---/, '');
 
   const tsFilePath = path.join(directory, 'index.ts');
   let output: string = `const markdownContent: string = \n\`${mdContent}\`;\n`;
