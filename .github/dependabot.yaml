@@ -5,6 +5,13 @@ updates:
     target-branch: 'main'
     schedule:
       interval: weekly
+    groups:
+      types-updates:
+        patterns:
+          - "@types/*"
+      package-updates:
+        patterns:
+          - "*"
     open-pull-requests-limit: 10
     pull-request-branch-name:
       separator: '-'
