@@ -3,7 +3,9 @@ title: Conditions
 section: Getting Started
 ---
 
-As in Go, we have two ways to check for specific conditions, using `if` statements and `switch`es:
+In Gno, we have two ways to check for specific conditions:
+- `if` statements
+- `switch` statements:
 
 ```go file=./conditions.gno#L5-L13
 ```

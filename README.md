@@ -34,6 +34,7 @@ yarn generate
 This command executes the tutorial route generation script, ensuring that all tutorials are up to date and ready for
 dynamic display. Make sure to run this command from the repository root.
 
+
 ### Markdown format
 
 Tutorials can be written using Markdown syntax.
