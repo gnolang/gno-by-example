@@ -6,7 +6,7 @@ func TestCount(t *testing.T) {
 	Add()
 	Add()
 	Add()
-	Remove()
+	Subtract()
 	got := Render("")
 	expected := "Count: 2"
 	if got != expected {
