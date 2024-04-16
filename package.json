@@ -35,7 +35,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "generate": "npx ts-node ./scripts/generate.ts"
+    "generate": "npx tsx ./scripts/generate.ts"
   },
   "eslintConfig": {
     "extends": [

@@ -37,7 +37,7 @@ const extractMetadata = (content: string): TutorialMetadata | null => {
 
 // Parses the .md files in the given directory, and generates
 // corresponding Typescript exports
-const parseTutorial = (directory: string): TutorialItem => {
+const parseTutorial = async (directory: string): Promise<TutorialItem> => {
   // Find the root .md file in the directory (should be only one)
   const mdFiles = fs
     .readdirSync(directory)
@@ -73,21 +73,21 @@ const parseTutorial = (directory: string): TutorialItem => {
     let filePathDependsOn = [];
     const filePathDependsOnMatch = codeRef.match(/depends_on_file=([^#\s]+)/);
     if (filePathDependsOnMatch) {
-      filePathDependsOn = filePathDependsOnMatch[1].split(",")
+      filePathDependsOn = filePathDependsOnMatch[1].split(',');
     }
 
     const filePath = filePathMatch[1];
     const codeFilePath = path.join(directory, filePath);
     let codeContent = fs.readFileSync(codeFilePath, 'utf-8');
 
-    
-      // Check if there are any specific code segments that need embedding
+
+    // Check if there are any specific code segments that need embedding
     if (/#L\d+-L\d+/.test(codeRef)) {
       const [startLine, endLine] =
-        codeRef
-          .match(/L(\d+)-L(\d+)/)
-          ?.slice(1)
-          .map(Number) || [];
+      codeRef
+        .match(/L(\d+)-L(\d+)/)
+        ?.slice(1)
+        .map(Number) || [];
       if (!startLine || !endLine) {
         continue;
       }
@@ -102,20 +102,20 @@ const parseTutorial = (directory: string): TutorialItem => {
         continue;
       }
 
-      codeContent =  lines.slice(startLine - 1, endLine).join('\n')
-    } 
+      codeContent = lines.slice(startLine - 1, endLine).join('\n');
+    }
 
     let files = [];
 
-    files.push({ path: codeFilePath, content: codeContent })
+    files.push({ path: codeFilePath, content: codeContent });
 
     filePathDependsOn.forEach(function(filePath) {
       const codeFilePath = path.join(directory, filePath);
       const codeContent = fs.readFileSync(codeFilePath, 'utf-8');
-      files.push({ path: codeFilePath, content: codeContent })
-    })
+      files.push({ path: codeFilePath, content: codeContent });
+    });
 
-    const filesEncoded = encodeURIComponent(JSON.stringify(files)) 
+    const filesEncoded = encodeURIComponent(JSON.stringify(files));
 
     const embeddedCodeBlock = `<Playground open="${codeFilePath}" files="${filesEncoded}">`;
 
@@ -146,7 +146,7 @@ const parseTutorial = (directory: string): TutorialItem => {
   output += `export default tutorialData;\n`;
 
   // Generate the index.ts
-  fs.writeFileSync(tsFilePath, prettier.format(output, { parser: 'babel' }));
+  fs.writeFileSync(tsFilePath, await prettier.format(output, { parser: 'typescript' }));
 
   return {
     dataPath:
@@ -158,7 +158,7 @@ const parseTutorial = (directory: string): TutorialItem => {
 };
 
 // Generates tutorial routes file based on the tutorial list
-const generateTutorialRoutes = (items: TutorialItem[], outputFile: string) => {
+const generateTutorialRoutes = async (items: TutorialItem[], outputFile: string) => {
   let output = '';
 
   items.forEach((item: TutorialItem) => {
@@ -216,7 +216,7 @@ const generateTutorialRoutes = (items: TutorialItem[], outputFile: string) => {
   output += 'export default tutorials;\n';
 
   try {
-    const formattedOutput = prettier.format(output, { parser: 'babel' });
+    const formattedOutput = await prettier.format(output, { parser: 'typescript' });
     fs.writeFileSync(outputFile, formattedOutput);
 
     console.log(
@@ -229,26 +229,33 @@ const generateTutorialRoutes = (items: TutorialItem[], outputFile: string) => {
 
 // Generate the corresponding tutorials in the subdirectories
 // and write out the tutorial routes
-const generateTutorials = () => {
+const generateTutorials = async () => {
   const baseDir: string = './src/tutorials/gno.land/gbe';
   // const baseDir: string = './scripts/dummy';
   const subDirs: string[] = fs.readdirSync(baseDir);
   const tutorialItems: TutorialItem[] = [];
 
-  subDirs.forEach((subDir: string) => {
+  for (const subDir of subDirs) {
     const subDirPath: string = path.join(baseDir, subDir);
     const isDirectory: boolean = fs.statSync(subDirPath).isDirectory();
 
     if (isDirectory) {
       // Generate the tutorial for this subdirectory
-      tutorialItems.push(parseTutorial(subDirPath));
+      const item: TutorialItem = await parseTutorial(subDirPath);
+
+      tutorialItems.push(item);
+
       console.log(`✅ Generated tutorial for: ${subDirPath}`);
     }
-  });
+  }
 
-  generateTutorialRoutes(tutorialItems, './src/tutorials.ts');
+  await generateTutorialRoutes(tutorialItems, './src/tutorials.ts');
 };
 
 // Generate the tutorials
 // and corresponding tutorial routes
-generateTutorials();
+generateTutorials().then(() => {
+  console.log('✅ Successfully generated all tutorials');
+}).catch((e) => {
+  console.log('❌ Error encountered during tutorial generation');
+});
