@@ -1,6 +1,6 @@
 ---
 title: Conditions
-section: Getting Started
+section: Basics
 ---
 
 As in Go, we have two ways to check for specific conditions, using `if` statements and `switch`es:

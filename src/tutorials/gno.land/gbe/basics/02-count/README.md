@@ -1,6 +1,6 @@
 ---
 title: First App
-section: Getting Started
+section: Basics
 ---
 
 Let's create our first application. This realm is able to add and substract from a global count variable using `Add()`

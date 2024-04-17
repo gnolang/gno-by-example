@@ -1,6 +1,6 @@
 ---
 title: Constants
-section: Getting Started
+section: Basics
 ---
 
 Constants works as they do in standard Go:

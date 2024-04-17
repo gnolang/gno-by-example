@@ -233,6 +233,7 @@ const generateTutorials = async () => {
   const baseDir: string = './src/tutorials/gno.land/gbe';
   // const baseDir: string = './scripts/dummy';
   const subDirs: string[] = fs.readdirSync(baseDir);
+  console.log("Subdirs found: ", subDirs)
   const tutorialItems: TutorialItem[] = [];
 
   for (const subDir of subDirs) {
@@ -257,5 +258,5 @@ const generateTutorials = async () => {
 generateTutorials().then(() => {
   console.log('✅ Successfully generated all tutorials');
 }).catch((e) => {
-  console.log('❌ Error encountered during tutorial generation');
+  console.log('❌ Error encountered during tutorial generation', e);
 });
