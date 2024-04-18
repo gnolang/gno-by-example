@@ -12,6 +12,6 @@ func Add() {
 	count++
 }
 
-func Remove() {
+func Subtract() {
 	count--
 }
