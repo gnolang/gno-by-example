@@ -13,8 +13,6 @@ used on [Gno.land](https://gno.land).
 The base application is built with `React` and utilizes the `Chakra UI` framework. You will need `Node v20+` to run it
 locally.
 
-Since the project is community-run, users can contribute new tutorials or modify existing ones.
-
 As a community-driven project, users are welcome to contribute by creating new tutorials or modifying existing ones.
 
 All tutorials are located within the `./src/tutorials/gno.land/gbe` subdirectory. Tutorials are automatically generated
