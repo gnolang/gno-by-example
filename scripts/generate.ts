@@ -230,22 +230,36 @@ const generateTutorialRoutes = async (items: TutorialItem[], outputFile: string)
 // Generate the corresponding tutorials in the subdirectories
 // and write out the tutorial routes
 const generateTutorials = async () => {
-  const baseDir: string = './src/tutorials/gno.land/gbe';
-  // const baseDir: string = './scripts/dummy';
-  const subDirs: string[] = fs.readdirSync(baseDir);
+  const baseDirPath: string = './src/tutorials/gno.land/gbe';
+
+  const sectionDirs: string[] = fs.readdirSync(baseDirPath);
   const tutorialItems: TutorialItem[] = [];
 
-  for (const subDir of subDirs) {
-    const subDirPath: string = path.join(baseDir, subDir);
-    const isDirectory: boolean = fs.statSync(subDirPath).isDirectory();
+  // Find section subdirs
+  for (const sectionName of sectionDirs) {
+    const sectionDirPath: string = path.join(baseDirPath, sectionName);
+    const isDirectory: boolean = fs.statSync(sectionDirPath).isDirectory();
 
-    if (isDirectory) {
+    // Ignore non-dirs
+    if (!isDirectory) {
+      continue
+    }
+
+    const tutorialDirs: string[] = fs.readdirSync(sectionDirPath);
+    // Find tutorial subdirs
+    for (const tutorialName of tutorialDirs) {
+      const tutorialDirPath: string = path.join(sectionDirPath, tutorialName);
+      const isDirectory: boolean = fs.statSync(tutorialDirPath).isDirectory();
+
+      // Ignore non-dirs
+      if (!isDirectory) {
+        continue
+      }
+
       // Generate the tutorial for this subdirectory
-      const item: TutorialItem = await parseTutorial(subDirPath);
-
+      const item: TutorialItem = await parseTutorial(tutorialDirPath);
       tutorialItems.push(item);
-
-      console.log(`✅ Generated tutorial for: ${subDirPath}`);
+      console.log(`✅ Generated tutorial for: ${sectionName} - ${tutorialName}`);
     }
   }
 
