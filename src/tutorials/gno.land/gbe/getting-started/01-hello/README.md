@@ -1,6 +1,6 @@
 ---
 title: Hello World
-section: Getting Startedasdsad
+section: Getting Started
 ---
 
 This is the simplest application that you can create using Gno. `Render(string) string` is a special method that will be
