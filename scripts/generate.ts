@@ -246,7 +246,7 @@ const generateTutorials = async () => {
     }
 
     const tutorialDirs: string[] = fs.readdirSync(sectionDirPath);
-    // Find tutorial subdirs
+    // Find tutorial subdirs in each section
     for (const tutorialName of tutorialDirs) {
       const tutorialDirPath: string = path.join(sectionDirPath, tutorialName);
       const isDirectory: boolean = fs.statSync(tutorialDirPath).isDirectory();
@@ -255,7 +255,7 @@ const generateTutorials = async () => {
       if (!isDirectory) {
         continue
       }
-
+1
       // Generate the tutorial for this subdirectory
       const item: TutorialItem = await parseTutorial(tutorialDirPath);
       tutorialItems.push(item);
