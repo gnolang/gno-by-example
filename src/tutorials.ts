@@ -5,7 +5,6 @@ import variables from "./tutorials/gno.land/gbe/getting-started/04-variables/ind
 import constants from "./tutorials/gno.land/gbe/getting-started/05-constants/index";
 import conditions from "./tutorials/gno.land/gbe/getting-started/06-conditions/index";
 import loops from "./tutorials/gno.land/gbe/getting-started/07-loops/index";
-import helloWorld from "./tutorials/gno.land/gbe/new/01-hello/index";
 
 const tutorials = [
   {
@@ -39,16 +38,6 @@ const tutorials = [
       {
         link: "loops",
         data: loops,
-      },
-    ],
-  },
-  {
-    section: "New",
-    link: "new",
-    items: [
-      {
-        link: "hello-world",
-        data: helloWorld,
       },
     ],
   },
