@@ -259,7 +259,7 @@ const generateTutorials = async () => {
       // Generate the tutorial for this subdirectory
       const item: TutorialItem = await parseTutorial(tutorialDirPath);
       tutorialItems.push(item);
-      console.log(`✅ Generated tutorial for: ${sectionName} - ${tutorialName}`);
+      console.log(`✅ Generated tutorial for: ${item.section} - ${tutorialName}`);
     }
   }
 

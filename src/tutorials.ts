@@ -8,13 +8,19 @@ import loops from "./tutorials/gno.land/gbe/getting-started/07-loops/index";
 
 const tutorials = [
   {
-    section: "Getting Started",
-    link: "getting-started",
+    section: "Getting Startedasdsad",
+    link: "getting-startedasdsad",
     items: [
       {
         link: "hello-world",
         data: helloWorld,
       },
+    ],
+  },
+  {
+    section: "Getting Started",
+    link: "getting-started",
+    items: [
       {
         link: "first-app",
         data: firstApp,

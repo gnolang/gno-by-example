@@ -12,7 +12,7 @@ We can test the \`Render\` method:
 
 const title: string = "Hello World";
 
-const section: string = "Getting Started";
+const section: string = "Getting Startedasdsad";
 
 const tutorialData = {
   content: markdownContent,
