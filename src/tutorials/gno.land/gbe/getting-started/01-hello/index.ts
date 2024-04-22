@@ -1,7 +1,8 @@
 const markdownContent: string = `
 
-This is the simplest application that you can create using Gno. \`Render(string) string\` is a special method that will be
-used by \`gnoweb\` to render markdown output.
+This is the simplest application that you can create using Gno. 
+\`Render(string) string\` is a special method that will be used by \`gnoweb\` to
+render markdown output.
 
 <Playground open="src/tutorials/gno.land/gbe/getting-started/01-hello/hello.gno" files="%5B%7B%22path%22%3A%22src%2Ftutorials%2Fgno.land%2Fgbe%2Fgetting-started%2F01-hello%2Fhello.gno%22%2C%22content%22%3A%22package%20hello%5Cn%5Cnfunc%20Render(path%20string)%20string%20%7B%5Cn%5Ctreturn%20%5C%22Hello%20World!%5C%22%5Cn%7D%22%7D%5D">
 
