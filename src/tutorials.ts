@@ -1,3 +1,4 @@
+import helloWorld from "./tutorials/gno.land/gbe/basics/01-hello/index";
 import helloWorld from "./tutorials/gno.land/gbe/getting-started/01-hello/index";
 import firstApp from "./tutorials/gno.land/gbe/getting-started/02-count/index";
 import primitives from "./tutorials/gno.land/gbe/getting-started/03-primitives/index";
@@ -11,6 +12,10 @@ const tutorials = [
     section: "Getting Started",
     link: "getting-started",
     items: [
+      {
+        link: "hello-world",
+        data: helloWorld,
+      },
       {
         link: "hello-world",
         data: helloWorld,
