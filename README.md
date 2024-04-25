@@ -33,7 +33,7 @@ yarn generate
 ```
 
 This command executes the tutorial route generation script, ensuring that all
-tutorials are up to date and ready for dynamic display. Make sure to run this 
+tutorials are up-to-date and ready for dynamic display. Make sure to run this 
 command from the repository root.
 
 ### Markdown format
@@ -53,6 +53,9 @@ title: Example Title
 section: Example Section
 ---
 ```
+
+Note: The `section` field in the metadata header will ultimately decide under
+which section the tutorial is generated in.
 
 #### Code snippets
 
