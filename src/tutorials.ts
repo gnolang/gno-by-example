@@ -1,10 +1,10 @@
-import helloWorld from "./tutorials/gno.land/gbe/01-hello/index";
-import firstApp from "./tutorials/gno.land/gbe/02-count/index";
-import primitives from "./tutorials/gno.land/gbe/03-primitives/index";
-import variables from "./tutorials/gno.land/gbe/04-variables/index";
-import constants from "./tutorials/gno.land/gbe/05-constants/index";
-import conditions from "./tutorials/gno.land/gbe/06-conditions/index";
-import loops from "./tutorials/gno.land/gbe/07-loops/index";
+import helloWorld from "./tutorials/gno.land/gbe/getting-started/01-hello/index";
+import firstApp from "./tutorials/gno.land/gbe/getting-started/02-count/index";
+import primitives from "./tutorials/gno.land/gbe/getting-started/03-primitives/index";
+import variables from "./tutorials/gno.land/gbe/getting-started/04-variables/index";
+import constants from "./tutorials/gno.land/gbe/getting-started/05-constants/index";
+import conditions from "./tutorials/gno.land/gbe/getting-started/06-conditions/index";
+import loops from "./tutorials/gno.land/gbe/getting-started/07-loops/index";
 
 const tutorials = [
   {
