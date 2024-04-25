@@ -260,7 +260,7 @@ const generateTutorials = async () => {
       // Generate the tutorial for this subdirectory
       const item: TutorialItem = await parseTutorial(tutorialDirPath);
       tutorialItems.push(item);
-      console.log(`\t ✨ Generated tutorial for: ${item.section} - ${tutorialName}`);
+      console.log(`\t ✨ Generated tutorial: ${item.section} - ${tutorialName}`);
     }
   }
 
