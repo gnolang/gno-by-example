@@ -1,13 +1,5 @@
 version: 2
 updates:
-  - package-ecosystem: "gomod"
-    directory: "/"
-    schedule:
-      interval: "daily" 
-    target-branch: "main"
-    versioning-strategy: "lockfile-only"
-    reviewers:
-      - 'zivkovicmilos'
   - package-ecosystem: npm
     directory: /
     target-branch: 'main'
@@ -25,3 +17,4 @@ updates:
       separator: '-'
     reviewers:
       - 'zivkovicmilos'
+ 
