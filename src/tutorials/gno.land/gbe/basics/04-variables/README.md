@@ -3,7 +3,8 @@ title: Variables
 section: Basics
 ---
 
-Global variables will keep the state between executions, but that is not the case for variables outside the global context, like inside functions:
+Global variables will keep the state between calls (transactions), but that is 
+not the case for variables outside the global context, such as inside functions:
 
 ```go file=./variables.gno
 ```

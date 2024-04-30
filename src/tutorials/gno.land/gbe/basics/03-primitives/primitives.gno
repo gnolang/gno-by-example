@@ -23,7 +23,7 @@ var (
 	ui16 uint16
 	ui32 uint32
 	ui64 uint64
-	// up   uintptr // TODO not supported
+	// up   uintptr // TODO not supported yet
 )
 
 var (
@@ -42,7 +42,7 @@ var (
 // 	c128 complex128
 // )
 
-// TODO: not yet implemented: https://github.com/gnolang/gno/pull/764
+// TODO: not supported yet
 // var bi bigint
 
 func Render(path string) string {
