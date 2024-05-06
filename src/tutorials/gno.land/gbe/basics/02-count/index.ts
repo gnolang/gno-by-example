@@ -1,9 +1,8 @@
 const markdownContent: string = `
 
-Let's create our first application. This realm is able to add and subtract from a global count variable using \`Add()\`
-and \`Subtract()\` methods. The state will be saved between executions.
-
-<!--TODO: add an example about how to deploy this realm and how to call to Add() and Remove() using the command line -->
+Let's create our first application. This realm is able to add and subtract from 
+a global counter variable using \`Add()\` and \`Subtract()\` methods. The state will 
+be saved between executions.
 
 <Playground open="src/tutorials/gno.land/gbe/basics/02-count/count.gno" files="%5B%7B%22path%22%3A%22src%2Ftutorials%2Fgno.land%2Fgbe%2Fbasics%2F02-count%2Fcount.gno%22%2C%22content%22%3A%22package%20count%5Cn%5Cnimport%20%5C%22fmt%5C%22%5Cn%5Cnvar%20count%20int%5Cn%5Cnfunc%20Render(path%20string)%20string%20%7B%5Cn%5Ctreturn%20fmt.Sprintf(%5C%22Count%3A%20%25d%5C%22%2C%20count)%5Cn%7D%5Cn%5Cnfunc%20Add()%20%7B%5Cn%5Ctcount%2B%2B%5Cn%7D%5Cn%5Cnfunc%20Subtract()%20%7B%5Cn%5Ctcount--%5Cn%7D%5Cn%22%7D%5D">
 

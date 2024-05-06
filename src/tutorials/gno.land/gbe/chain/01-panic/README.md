@@ -1,5 +1,5 @@
 ---
-title: Reverting in Gno
+title: Reverting a transaction
 section: Chain
 ---
 

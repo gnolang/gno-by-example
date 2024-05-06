@@ -8,7 +8,6 @@ import (
 var count int
 
 func Emitter(value2 string) {
-
 	count += 1
 	// Here we define a unique identifier for our event
 	event := "GBE-chain-02-events"

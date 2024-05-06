@@ -1,0 +1,15 @@
+{
+  "type": "GBE-chain-02-events",
+  "pkg_path": "gno.land/r/demo/event",
+  "func": "Emitter",
+  "attrs": [
+    {
+      "key": "timesCalled",
+      "value": "1"
+    },
+    {
+      "key": "userArgument",
+      "value": "My 1st argument!"
+    }
+  ]
+}

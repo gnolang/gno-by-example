@@ -1,5 +1,5 @@
 ---
-title: Events in Gno
+title: Emitting an event
 section: Chain
 ---
 
@@ -11,9 +11,14 @@ each action you want to be indexable off-chain.
 ```go file=./event.gno
 ```
 
-Calling the `Emitter` function with `gnokey maketx call` will result in an event 
-emitted: 
+When this function is called, it will emit the following event:
 
+
+```json file=./output1.json
 ```
-// todo fill in once test/run has support for displaying events
+
+
+Calling the `function` again, we will be able to see the count value increase:
+
+```json file=./output2.json
 ```
