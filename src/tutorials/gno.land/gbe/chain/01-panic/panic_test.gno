@@ -2,6 +2,11 @@ package panic
 
 import "testing"
 
-func TestPanic(t *testing.T) {
+func TestIncrement(t *testing.T) {
+	println(count)
+	Increment(true)
+}
 
+func TestIncrement2(t *testing.T) {
+	println(count)
 }
