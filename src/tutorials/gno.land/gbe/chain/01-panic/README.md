@@ -9,6 +9,5 @@ we revert transactions by using `panic()`.
 ```go file=./panic.gno
 ```
 
-Let's see how `panic()` works:
-```go file=./panic_test.gno depends_on_file=./panic.gno
-```
+By reverting a transaction, all state changes that have happened up until that 
+point of execution will not be applied.
