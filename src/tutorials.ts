@@ -8,8 +8,8 @@ import loops from "./tutorials/gno.land/gbe/basics/07-loops/index";
 import revertingATransaction from "./tutorials/gno.land/gbe/chain/01-panic/index";
 import settingInitialValuesUsingInit from "./tutorials/gno.land/gbe/chain/02-init/index";
 import emittingAnEvent from "./tutorials/gno.land/gbe/chain/03-events/index";
-import coins from "./tutorials/gno.land/gbe/chain/04-coins/index";
-import sendingNativeCoinsInGno from "./tutorials/gno.land/gbe/chain/05-banker/index";
+import sendingAndReceivingCoins from "./tutorials/gno.land/gbe/chain/04-coins/index";
+import sendingCoins from "./tutorials/gno.land/gbe/chain/05-banker/index";
 
 const tutorials = [
   {
@@ -63,12 +63,12 @@ const tutorials = [
         data: emittingAnEvent,
       },
       {
-        link: "coins",
-        data: coins,
+        link: "sending-and-receiving-coins",
+        data: sendingAndReceivingCoins,
       },
       {
-        link: "sending-native-coins-in-gno",
-        data: sendingNativeCoinsInGno,
+        link: "sending-coins",
+        data: sendingCoins,
       },
     ],
   },
