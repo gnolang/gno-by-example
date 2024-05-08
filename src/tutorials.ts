@@ -9,8 +9,9 @@ import importing from "./tutorials/gno.land/gbe/basics/08-imports/index";
 import settingInitialValuesUsingInit from "./tutorials/gno.land/gbe/chain/01-init/index";
 import revertingATransaction from "./tutorials/gno.land/gbe/chain/02-panic/index";
 import emittingAnEvent from "./tutorials/gno.land/gbe/chain/03-events/index";
-import manipulatingCoins from "./tutorials/gno.land/gbe/chain/04-coins/index";
-import sendingCoins from "./tutorials/gno.land/gbe/chain/05-banker/index";
+import gettingTheTransactionCaller from "./tutorials/gno.land/gbe/chain/04-call_stack/index";
+import manipulatingCoins from "./tutorials/gno.land/gbe/chain/05-coins/index";
+import sendingCoins from "./tutorials/gno.land/gbe/chain/06-banker/index";
 
 const tutorials = [
   {
@@ -66,6 +67,10 @@ const tutorials = [
       {
         link: "emitting-an-event",
         data: emittingAnEvent,
+      },
+      {
+        link: "getting-the-transaction-caller",
+        data: gettingTheTransactionCaller,
       },
       {
         link: "manipulating-coins",
