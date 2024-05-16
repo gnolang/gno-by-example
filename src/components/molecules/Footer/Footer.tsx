@@ -74,7 +74,7 @@ const Footer: FC<IFooterProps> = () => {
               isExternal
               href={'https://github.com/gnolang/gno-by-example'}
             >
-              GitHub repo
+              GitHub repo.
             </Link>
           </Text>
         </Box>

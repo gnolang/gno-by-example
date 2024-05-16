@@ -272,5 +272,5 @@ const generateTutorials = async () => {
 generateTutorials().then(() => {
   console.log('✅ Successfully generated all tutorials');
 }).catch((e) => {
-  console.log('❌ Error encountered during tutorial generation');
+  console.log('❌ Error encountered during tutorial generation', e);
 });
