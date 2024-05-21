@@ -1,6 +1,6 @@
 {
-  "short_name": "Gno By Example",
-  "name": "Gno By Example",
+  "name": "gno by example",
+  "short_name": "gno by example",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",
