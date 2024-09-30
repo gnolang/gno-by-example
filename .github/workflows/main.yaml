@@ -8,3 +8,6 @@ jobs:
   test:
     name: Gno Test
     uses: ./.github/workflows/test.yaml
+  generate:
+    name: Generate
+    uses: ./.github/workflows/generate.yaml

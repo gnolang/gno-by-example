@@ -1,16 +1,14 @@
-EXAMPLES_DIR = src/tutorials/*/*/*
+gnobin := go run github.com/gnolang/gno/gnovm/cmd/gno
 
-all: clean clone bin test
+all: generate build
 
-clone:
-	cd gnobuild && git clone https://github.com/gnolang/gno.git
-bin:
-	cd gnobuild/gno/gnovm && make build
+test:
+	$(gnobin) test -v ./src/tutorials/...
 
-test: $(EXAMPLES_DIR)
-	@echo "++++ Executing tests for $^"
-	./gnobuild/gno/gnovm/build/gno test -v --root-dir ./gnobuild/gno ./$^
+dev build generate: node_modules
+	yarn run $@
 
-clean:
-	rm -rf gnobuild
-	mkdir gnobuild
+node_modules: package.json yarn.lock
+	yarn
+
+.PHONY: dev build generate test all
