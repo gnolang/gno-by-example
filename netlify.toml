@@ -1,4 +1,5 @@
 [[redirects]]
 from = "/*"
 to = "https://docs.gno.land"
+force = true
 status = 302
