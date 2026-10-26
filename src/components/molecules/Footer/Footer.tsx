@@ -21,7 +21,7 @@ const Footer: FC<IFooterProps> = () => {
   const icons = [
     {
       icon: <BsDiscord color={iconColor} size={iconSize} />,
-      link: 'https://discord.gg/YFtMjWwUN7'
+      link: 'https://discord.com/invite/gnoland'
     },
     {
       icon: <BsGithub color={iconColor} size={iconSize} />,
